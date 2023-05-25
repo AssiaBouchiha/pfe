@@ -1,0 +1,48 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'locationTabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'locationTabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'Code' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Code' | translate}}" autofocus  id="1" [(ngModel)]="item.code">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'Description' | translate}}</label>
+                        <textarea id="2" pInputTextarea rows="5" cols="30" [disabled]="true" placeholder="{{'Description' | translate}}"  [(ngModel)]="item.description"></textarea>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'Institution' | translate}}</label>
+                        <p-dropdown [options]="institutions" [(ngModel)]="item.institution" id="3" [disabled]="true" optionLabel="libelle" placeholder="{{'Institution' | translate}}"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'Department' | translate}}</label>
+                        <p-dropdown [options]="departments" [(ngModel)]="item.department" id="4" [disabled]="true" optionLabel="libelle" placeholder="{{'Department' | translate}}"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'Location type' | translate}}</label>
+                        <p-dropdown [options]="locationTypes" [(ngModel)]="item.locationType" id="5" [disabled]="true" optionLabel="libelle" placeholder="{{'Location type' | translate}}"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'Laboratory' | translate}}</label>
+                        <p-dropdown [options]="laboratorys" [(ngModel)]="item.laboratory" id="6" [disabled]="true" optionLabel="code" placeholder="{{'Laboratory' | translate}}"></p-dropdown>
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="grid-footer">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

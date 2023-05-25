@@ -1,0 +1,281 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'laboratoryTabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'laboratoryTabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-4">
+                                                    <label for="1">{{'laboratoryCode' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'laboratoryCode' | translate}}" id="1" [(ngModel)]="item.code"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validLaboratoryCode}"  />
+                                                    <small class='p-error' *ngIf='!validLaboratoryCode'>Code est obligatoire.</small>
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-4">
+                                                    <label for="2">{{'laboratoryNom' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'laboratoryNom' | translate}}" id="2" [(ngModel)]="item.nom"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                                <div class="field align-inputswitch col-12  md:col-4">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="3">{{'laboratoryBloqued' | translate}}</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="3"  [(ngModel)]="item.bloqued"
+                                                                 >
+                                                        </p-inputSwitch>
+                                                        
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="field col-12 md:col-4">
+                                                    <label for="4">{{'laboratoryCity' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'laboratoryCity' | translate}}" id="4" [(ngModel)]="item.city"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-3">
+                                                <label for="6">{{'laboratoryLocation' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="locations" [(ngModel)]="item.location" id="6" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="code" placeholder="{{'laboratoryLocation' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                            <div class="field col-11 md:col-3">
+                                                <label for="7">{{'laboratoryDataImportExport' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="dataImportExports" [(ngModel)]="item.dataImportExport" id="7" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="code" placeholder="{{'laboratoryDataImportExport' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                            <div class="field col-11 md:col-3">
+                                                <label for="10">{{'laboratoryDataanalysis' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="dataanalysiss" [(ngModel)]="item.dataanalysis" id="10" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="code" placeholder="{{'laboratoryDataanalysis' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                            <div class="field col-11 md:col-3">
+                                                <label for="11">{{'laboratoryDataarchive' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="dataarchives" [(ngModel)]="item.dataarchive" id="11" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="code" placeholder="{{'laboratoryDataarchive' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                            <div class="field col-11 md:col-3">
+                                                <label for="12">{{'laboratoryReport' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="reports" [(ngModel)]="item.report" id="12" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="code" placeholder="{{'laboratoryReport' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                </div>
+                            </p-tabPanel>
+                                    <p-tabPanel header="laboratoryAntibiotic">
+                                        <p-tabView [(activeIndex)]="activeTab">
+                                            <p-tabPanel header="Création">
+                                                    <div class="grid">
+                                                                    <div class="field col-12 md:col-4">
+                                                                        <label for="1">Code<span style="color: red;">*</span></label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Code"
+                                                                               id="1" [(ngModel)]="antibioticElement.code" autofocus  [ngClass]="{'ng-invalid ng-dirty' : !validAntibioticCode}"  >
+                                                                        <small class='p-error' *ngIf='!validAntibioticCode'>Code est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-4">
+                                                                        <label for="2">Nom</label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Nom"
+                                                                               id="2" [(ngModel)]="antibioticElement.nom" autofocus   >
+                                                                        
+                                                                    </div>
+                                                                    <div class="field col-11 md:col-3">
+                                                                        <label>Microbiology</label>
+                                                                        <p-dropdown  appendTo="body"  [options]="microbiologys" [(ngModel)]="antibioticElement.microbiology"
+                                                                                     id="3"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="code"
+                                                                                     placeholder="Microbiology"  >
+                                                                        </p-dropdown>
+                                                                        
+                                                                    </div>
+                                                                    <div class="field col-12  md:col-4">
+                                                                        <label>Laboratory</label>
+                                                                        <p-multiSelect appendTo="body" [options]="laboratoryAntibiotics" [(ngModel)]="antibioticElement.laboratoryAntibiotics" defaultLabel="Selectionner un Laboratory" itemSize="30" [virtualScroll]="true"
+                                                                                       optionLabel="laboratory.code"  display="chip"></p-multiSelect>
+                                                                    </div>
+                                                        <div class="field col-12 md:col-1">
+                                                            <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addAntibiotic()"></button>
+                                                        </div>
+
+                                                    </div>
+                                            </p-tabPanel>
+                                            <p-tabPanel header="Liste {{item.antibiotic?.length > 0 ? '(' + item.antibiotic?.length + ')' : ''}}">
+                                                    <div class="card">
+                                                        <p-table [value]="item.antibiotic" [scrollable]="true" scrollHeight="200px">
+                                                            <ng-template pTemplate="header">
+                                                                <tr>
+                                                                                <th>Code</th>
+                                                                                <th>Nom</th>
+                                                                                <th>Microbiology</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </ng-template>
+                                                            <ng-template pTemplate="body" let-p>
+                                                                <tr>
+                                                                                <td>{{p.code}}</td>
+                                                                                <td>{{p.nom}}</td>
+                                                                            <td>{{p.microbiology?.code}}</td>
+                                                                    <td>
+                                                                        <button (click)="deleteAntibiotic(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
+                                                                        <button (click)="editAntibiotic(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-template>
+                                                        </p-table>
+                                                    </div>
+
+                                            </p-tabPanel>
+                                        </p-tabView>
+                                    </p-tabPanel>
+
+                                    <p-tabPanel header="laboratoryAlerts">
+                                        <p-tabView [(activeIndex)]="activeTab">
+                                            <p-tabPanel header="Création">
+                                                    <div class="grid">
+                                                                    <div class="field col-12 md:col-4">
+                                                                        <label for="1">Code<span style="color: red;">*</span></label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Code"
+                                                                               id="1" [(ngModel)]="alertsElement.code" autofocus  [ngClass]="{'ng-invalid ng-dirty' : !validAlertsCode}"  >
+                                                                        <small class='p-error' *ngIf='!validAlertsCode'>Code est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-4">
+                                                                        <label for="2">Description</label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Description"
+                                                                               id="2" [(ngModel)]="alertsElement.description" autofocus   >
+                                                                        
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-4">
+                                                                        <label for="3">Nom</label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Nom"
+                                                                               id="3" [(ngModel)]="alertsElement.nom" autofocus   >
+                                                                        
+                                                                    </div>
+                                                        <div class="field col-12 md:col-1">
+                                                            <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addAlerts()"></button>
+                                                        </div>
+
+                                                    </div>
+                                            </p-tabPanel>
+                                            <p-tabPanel header="Liste {{item.alerts?.length > 0 ? '(' + item.alerts?.length + ')' : ''}}">
+                                                    <div class="card">
+                                                        <p-table [value]="item.alerts" [scrollable]="true" scrollHeight="200px">
+                                                            <ng-template pTemplate="header">
+                                                                <tr>
+                                                                                <th>Code</th>
+                                                                                <th>Description</th>
+                                                                                <th>Nom</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </ng-template>
+                                                            <ng-template pTemplate="body" let-p>
+                                                                <tr>
+                                                                                <td>{{p.code}}</td>
+                                                                                <td>{{p.description}}</td>
+                                                                                <td>{{p.nom}}</td>
+                                                                    <td>
+                                                                        <button (click)="deleteAlert(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
+                                                                        <button (click)="editAlert(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-template>
+                                                        </p-table>
+                                                    </div>
+
+                                            </p-tabPanel>
+                                        </p-tabView>
+                                    </p-tabPanel>
+
+                                    <p-tabPanel header="laboratoryNotifications">
+                                        <p-tabView [(activeIndex)]="activeTab">
+                                            <p-tabPanel header="Création">
+                                                    <div class="grid">
+                                                                    <div class="field col-12 md:col-4">
+                                                                        <label for="1">Code<span style="color: red;">*</span></label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Code"
+                                                                               id="1" [(ngModel)]="notificationsElement.code" autofocus  [ngClass]="{'ng-invalid ng-dirty' : !validNotificationsCode}"  >
+                                                                        <small class='p-error' *ngIf='!validNotificationsCode'>Code est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-4">
+                                                                        <label for="2">Nom</label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Nom"
+                                                                               id="2" [(ngModel)]="notificationsElement.nom" autofocus   >
+                                                                        
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-4">
+                                                                        <label for="3">Description</label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Description"
+                                                                               id="3" [(ngModel)]="notificationsElement.description" autofocus   >
+                                                                        
+                                                                    </div>
+                                                        <div class="field col-12 md:col-1">
+                                                            <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addNotifications()"></button>
+                                                        </div>
+
+                                                    </div>
+                                            </p-tabPanel>
+                                            <p-tabPanel header="Liste {{item.notifications?.length > 0 ? '(' + item.notifications?.length + ')' : ''}}">
+                                                    <div class="card">
+                                                        <p-table [value]="item.notifications" [scrollable]="true" scrollHeight="200px">
+                                                            <ng-template pTemplate="header">
+                                                                <tr>
+                                                                                <th>Code</th>
+                                                                                <th>Nom</th>
+                                                                                <th>Description</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </ng-template>
+                                                            <ng-template pTemplate="body" let-p>
+                                                                <tr>
+                                                                                <td>{{p.code}}</td>
+                                                                                <td>{{p.nom}}</td>
+                                                                                <td>{{p.description}}</td>
+                                                                    <td>
+                                                                        <button (click)="deleteNotification(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
+                                                                        <button (click)="editNotification(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-template>
+                                                        </p-table>
+                                                    </div>
+
+                                            </p-tabPanel>
+                                        </p-tabView>
+                                    </p-tabPanel>
+
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="grid-step">
+                        <div style="margin-left: auto;">
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                        </div>
+                        <div>
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+                        </div>
+
+                </div>
+            </ng-template>
+
+
+
+    </p-dialog>

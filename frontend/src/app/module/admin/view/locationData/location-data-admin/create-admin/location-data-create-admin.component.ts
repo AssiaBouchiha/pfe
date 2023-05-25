@@ -1,0 +1,201 @@
+import {Component, OnInit, Input} from '@angular/core';
+
+import { AbstractCreateController } from 'src/app/zynerator/controller/AbstractCreateController';
+
+import {LocationDataService} from 'src/app/controller/service/LocationData.service';
+import {LocationDataDto} from 'src/app/controller/model/LocationData.model';
+import {LocationDataCriteria} from 'src/app/controller/criteria/LocationDataCriteria.model';
+import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
+import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
+import {LocationTypeDto} from 'src/app/controller/model/LocationType.model';
+import {LocationTypeService} from 'src/app/controller/service/LocationType.service';
+import {InstitutionDto} from 'src/app/controller/model/Institution.model';
+import {InstitutionService} from 'src/app/controller/service/Institution.service';
+import {DepartmentDto} from 'src/app/controller/model/Department.model';
+import {DepartmentService} from 'src/app/controller/service/Department.service';
+@Component({
+  selector: 'app-location-data-create-admin',
+  templateUrl: './location-data-create-admin.component.html'
+})
+export class LocationDataCreateAdminComponent extends AbstractCreateController<LocationDataDto, LocationDataCriteria, LocationDataService>  implements OnInit {
+
+
+
+   private _validLocationDataCode = true;
+    private _validInstitutionCode = true;
+    private _validInstitutionLibelle = true;
+    private _validDepartmentCode = true;
+    private _validDepartmentLibelle = true;
+    private _validLocationTypeCode = true;
+    private _validLocationTypeLibelle = true;
+    private _validDataImportExportCode = true;
+
+    constructor( private locationDataService: LocationDataService , private dataImportExportService: DataImportExportService, private locationTypeService: LocationTypeService, private institutionService: InstitutionService, private departmentService: DepartmentService) {
+        super(locationDataService);
+    }
+
+    ngOnInit(): void {
+    this.institution = new InstitutionDto();
+    this.institutionService.findAll().subscribe((data) => this.institutions = data);
+    this.department = new DepartmentDto();
+    this.departmentService.findAll().subscribe((data) => this.departments = data);
+    this.locationType = new LocationTypeDto();
+    this.locationTypeService.findAll().subscribe((data) => this.locationTypes = data);
+    this.dataImportExport = new DataImportExportDto();
+    this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
+}
+
+
+
+
+
+    public setValidation(value: boolean){
+        this.validLocationDataCode = value;
+    }
+
+
+
+    public validateForm(): void{
+        this.errorMessages = new Array<string>();
+        this.validateLocationDataCode();
+    }
+
+    public validateLocationDataCode(){
+        if (this.stringUtilService.isEmpty(this.item.code)) {
+        this.errorMessages.push('Code non valide');
+        this.validLocationDataCode = false;
+        } else {
+            this.validLocationDataCode = true;
+        }
+    }
+
+
+
+    get locationType(): LocationTypeDto {
+        return this.locationTypeService.item;
+    }
+    set locationType(value: LocationTypeDto) {
+        this.locationTypeService.item = value;
+    }
+    get locationTypes(): Array<LocationTypeDto> {
+        return this.locationTypeService.items;
+    }
+    set locationTypes(value: Array<LocationTypeDto>) {
+        this.locationTypeService.items = value;
+    }
+    get createLocationTypeDialog(): boolean {
+       return this.locationTypeService.createDialog;
+    }
+    set createLocationTypeDialog(value: boolean) {
+        this.locationTypeService.createDialog= value;
+    }
+    get dataImportExport(): DataImportExportDto {
+        return this.dataImportExportService.item;
+    }
+    set dataImportExport(value: DataImportExportDto) {
+        this.dataImportExportService.item = value;
+    }
+    get dataImportExports(): Array<DataImportExportDto> {
+        return this.dataImportExportService.items;
+    }
+    set dataImportExports(value: Array<DataImportExportDto>) {
+        this.dataImportExportService.items = value;
+    }
+    get createDataImportExportDialog(): boolean {
+       return this.dataImportExportService.createDialog;
+    }
+    set createDataImportExportDialog(value: boolean) {
+        this.dataImportExportService.createDialog= value;
+    }
+    get department(): DepartmentDto {
+        return this.departmentService.item;
+    }
+    set department(value: DepartmentDto) {
+        this.departmentService.item = value;
+    }
+    get departments(): Array<DepartmentDto> {
+        return this.departmentService.items;
+    }
+    set departments(value: Array<DepartmentDto>) {
+        this.departmentService.items = value;
+    }
+    get createDepartmentDialog(): boolean {
+       return this.departmentService.createDialog;
+    }
+    set createDepartmentDialog(value: boolean) {
+        this.departmentService.createDialog= value;
+    }
+    get institution(): InstitutionDto {
+        return this.institutionService.item;
+    }
+    set institution(value: InstitutionDto) {
+        this.institutionService.item = value;
+    }
+    get institutions(): Array<InstitutionDto> {
+        return this.institutionService.items;
+    }
+    set institutions(value: Array<InstitutionDto>) {
+        this.institutionService.items = value;
+    }
+    get createInstitutionDialog(): boolean {
+       return this.institutionService.createDialog;
+    }
+    set createInstitutionDialog(value: boolean) {
+        this.institutionService.createDialog= value;
+    }
+
+
+
+    get validLocationDataCode(): boolean {
+        return this._validLocationDataCode;
+    }
+
+    set validLocationDataCode(value: boolean) {
+         this._validLocationDataCode = value;
+    }
+
+    get validInstitutionCode(): boolean {
+        return this._validInstitutionCode;
+    }
+    set validInstitutionCode(value: boolean) {
+        this._validInstitutionCode = value;
+    }
+    get validInstitutionLibelle(): boolean {
+        return this._validInstitutionLibelle;
+    }
+    set validInstitutionLibelle(value: boolean) {
+        this._validInstitutionLibelle = value;
+    }
+    get validDepartmentCode(): boolean {
+        return this._validDepartmentCode;
+    }
+    set validDepartmentCode(value: boolean) {
+        this._validDepartmentCode = value;
+    }
+    get validDepartmentLibelle(): boolean {
+        return this._validDepartmentLibelle;
+    }
+    set validDepartmentLibelle(value: boolean) {
+        this._validDepartmentLibelle = value;
+    }
+    get validLocationTypeCode(): boolean {
+        return this._validLocationTypeCode;
+    }
+    set validLocationTypeCode(value: boolean) {
+        this._validLocationTypeCode = value;
+    }
+    get validLocationTypeLibelle(): boolean {
+        return this._validLocationTypeLibelle;
+    }
+    set validLocationTypeLibelle(value: boolean) {
+        this._validLocationTypeLibelle = value;
+    }
+    get validDataImportExportCode(): boolean {
+        return this._validDataImportExportCode;
+    }
+    set validDataImportExportCode(value: boolean) {
+        this._validDataImportExportCode = value;
+    }
+
+
+}

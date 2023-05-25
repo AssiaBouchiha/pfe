@@ -1,0 +1,64 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'microbiologyTabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'microbiologyTabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-3">
+                        <label for="1">{{'Code' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Code' | translate}}" autofocus  id="1" [(ngModel)]="item.code">
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="2">{{'Organism' | translate}}</label>
+                        <p-dropdown [options]="organisms" [(ngModel)]="item.organism" id="2" [disabled]="true" optionLabel="libelle" placeholder="{{'Organism' | translate}}"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="3">{{'Sero type' | translate}}</label>
+                        <p-dropdown [options]="seroTypes" [(ngModel)]="item.seroType" id="3" [disabled]="true" optionLabel="libelle" placeholder="{{'Sero type' | translate}}"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="4">{{'Betalactamase' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Betalactamase' | translate}}" autofocus  id="4" [(ngModel)]="item.betalactamase">
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="5">{{'Esbl' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Esbl' | translate}}" autofocus  id="5" [(ngModel)]="item.esbl">
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="6">{{'Carbapenemase' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Carbapenemase' | translate}}" autofocus  id="6" [(ngModel)]="item.carbapenemase">
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="7">{{'Mrsa' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Mrsa' | translate}}" autofocus  id="7" [(ngModel)]="item.mrsa">
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="8">{{'Inducible clindamycin resistance' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Inducible clindamycin resistance' | translate}}" autofocus  id="8" [(ngModel)]="item.inducibleClindamycinResistance">
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="9">{{'Antibiotic' | translate}}</label>
+                        <p-dropdown [options]="antibiotics" [(ngModel)]="item.antibiotic" id="9" [disabled]="true" optionLabel="code" placeholder="{{'Antibiotic' | translate}}"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label for="10">{{'Data import export' | translate}}</label>
+                        <p-dropdown [options]="dataImportExports" [(ngModel)]="item.dataImportExport" id="10" [disabled]="true" optionLabel="code" placeholder="{{'Data import export' | translate}}"></p-dropdown>
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="grid-footer">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

@@ -1,0 +1,70 @@
+        <p-dialog [(visible)]="editDialog" [style]="{width: '70vw'}" header="{{'antibioticTabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="{{'antibioticTabPan' | translate}}">
+                        <div class="grid">
+
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="1">{{'antibioticCode' | translate}}<span style="color: red;">*</span></label>
+                                            <input   appendTo="body" class="mb-2 mr-2" type="text" pInputText placeholder="{{'antibioticCode' | translate}}" id="1" [(ngModel)]="item.code"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validAntibioticCode}"  />
+                                            <small class='p-error' *ngIf='!validAntibioticCode'>Code est obligatoire.</small>
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="2">{{'antibioticNom' | translate}}</label>
+                                            <input   appendTo="body" class="mb-2 mr-2" type="text" pInputText placeholder="{{'antibioticNom' | translate}}" id="2" [(ngModel)]="item.nom"
+                                                     />
+                                            
+                                        </div>
+
+                                    <div class="field col-11 md:col-5">
+                                            <label for="3">{{'antibioticMicrobiology' | translate}}</label>
+                                            <p-dropdown   appendTo="body" [options]="microbiologys" [(ngModel)]="item.microbiology" id="3"[filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true" optionLabel="code" placeholder="{{'antibioticMicrobiology' | translate}}"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+
+                        </div>
+                    </p-tabPanel>
+                            <p-tabPanel header="laboratory">
+                                <div class="grid">
+                                    <div class="col">
+                                        <div class="card">
+                                            <p-table [value]="laboratoryAntibiotics" [(selection)]="item.laboratoryAntibiotics" dataKey="laboratory.code" [scrollable]="true" scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                        <th>Laboratory</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                        <td><p-tableCheckbox [value]="p" ></p-tableCheckbox></td>
+                                                        <td>{{p.laboratory?.code}}</td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p-tabPanel>
+
+                </p-tabView>
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="grid-footer">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+
+
+    </p-dialog>
