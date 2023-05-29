@@ -29,41 +29,33 @@
                         <p-dropdown [options]="locations" [(ngModel)]="item.location" id="6" [disabled]="true" optionLabel="code" placeholder="{{'Location' | translate}}"></p-dropdown>
                     </div>
                     <div class="field col-12 md:col-4">
-                        <label for="7">{{'Data import export' | translate}}</label>
-                        <p-dropdown [options]="dataImportExports" [(ngModel)]="item.dataImportExport" id="7" [disabled]="true" optionLabel="code" placeholder="{{'Data import export' | translate}}"></p-dropdown>
+                        <label for="9">{{'Data analysis' | translate}}</label>
+                        <p-dropdown [options]="dataAnalysiss" [(ngModel)]="item.dataAnalysis" id="9" [disabled]="true" optionLabel="code" placeholder="{{'Data analysis' | translate}}"></p-dropdown>
                     </div>
                     <div class="field col-12 md:col-4">
-                        <label for="10">{{'Dataanalysis' | translate}}</label>
-                        <p-dropdown [options]="dataanalysiss" [(ngModel)]="item.dataanalysis" id="10" [disabled]="true" optionLabel="code" placeholder="{{'Dataanalysis' | translate}}"></p-dropdown>
+                        <label for="10">{{'Data archive' | translate}}</label>
+                        <p-dropdown [options]="dataArchives" [(ngModel)]="item.dataArchive" id="10" [disabled]="true" optionLabel="code" placeholder="{{'Data archive' | translate}}"></p-dropdown>
                     </div>
                     <div class="field col-12 md:col-4">
-                        <label for="11">{{'Dataarchive' | translate}}</label>
-                        <p-dropdown [options]="dataarchives" [(ngModel)]="item.dataarchive" id="11" [disabled]="true" optionLabel="code" placeholder="{{'Dataarchive' | translate}}"></p-dropdown>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <label for="12">{{'Report' | translate}}</label>
-                        <p-dropdown [options]="reports" [(ngModel)]="item.report" id="12" [disabled]="true" optionLabel="code" placeholder="{{'Report' | translate}}"></p-dropdown>
+                        <label for="11">{{'Report' | translate}}</label>
+                        <p-dropdown [options]="reports" [(ngModel)]="item.report" id="11" [disabled]="true" optionLabel="code" placeholder="{{'Report' | translate}}"></p-dropdown>
                     </div>
                 </div>
             </p-tabPanel>
 
-            <p-tabPanel header="laboratoryAntibiotic">
+            <p-tabPanel header="laboratoryLaboratoryAntibiotics">
                 <div class="grid">
                     <div class="col">
                         <div class="card">
-                            <p-table [value]="item.antibiotic" [scrollable]="true" scrollHeight="200px">
+                            <p-table [value]="item.laboratoryAntibiotics" [scrollable]="true" scrollHeight="200px">
                                 <ng-template pTemplate="header">
                                     <tr>
-                                        <th>Code</th>
-                                        <th>Nom</th>
-                                        <th>Microbiology</th>
+                                        <th>Antibiotic</th>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-p>
                                     <tr>
-                                        <td>{{p.code}}</td>
-                                        <td>{{p.nom}}</td>
-                                        <td>{{p.microbiology?.code}}</td>
+                                        <td>{{p.antibiotic?.code}}</td>
                                     </tr>
                                 </ng-template>
                             </p-table>

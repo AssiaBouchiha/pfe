@@ -13,7 +13,6 @@ import {EnvironmentDto} from '../model/Environment.model';
 import {EnvironmentCriteria} from '../criteria/EnvironmentCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {AgeCategoryDto} from '../model/AgeCategory.model';
 import {GenderDto} from '../model/Gender.model';
 

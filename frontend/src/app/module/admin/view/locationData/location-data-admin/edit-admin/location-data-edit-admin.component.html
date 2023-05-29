@@ -5,14 +5,14 @@
                         <div class="grid">
 
 
-                                        <div class="field col-12 md:col-4">
+                                        <div class="field col-12 md:col-6">
                                             <label for="1">{{'locationDataCode' | translate}}<span style="color: red;">*</span></label>
                                             <input   appendTo="body" class="mb-2 mr-2" type="text" pInputText placeholder="{{'locationDataCode' | translate}}" id="1" [(ngModel)]="item.code"
                                                     [ngClass]="{'ng-invalid ng-dirty' : !validLocationDataCode}"  />
                                             <small class='p-error' *ngIf='!validLocationDataCode'>Code est obligatoire.</small>
                                         </div>
 
-                                        <div class="field col-12 md:col-4">
+                                        <div class="field col-12 md:col-6">
                                             <label for="2">{{'locationDataDateOfAdmission' | translate}}</label>
                                             <p-calendar appendTo="body" id="2"   [showTime]="true" [showSeconds]="false" placeholder="{{'locationDataDateOfAdmission' | translate}}"  [(ngModel)]="item.dateOfAdmission"
                                                       >
@@ -20,14 +20,14 @@
                                             
                                         </div>
 
-                                        <div class="field col-12 md:col-4">
+                                        <div class="field col-12 md:col-6">
                                             <label for="3">{{'locationDataLocation' | translate}}</label>
                                             <input   appendTo="body" class="mb-2 mr-2" type="text" pInputText placeholder="{{'locationDataLocation' | translate}}" id="3" [(ngModel)]="item.location"
                                                      />
                                             
                                         </div>
 
-                                    <div class="field col-11 md:col-3">
+                                    <div class="field col-11 md:col-5">
                                             <label for="4">{{'locationDataInstitution' | translate}}</label>
                                             <p-dropdown   appendTo="body" [options]="institutions" [(ngModel)]="item.institution" id="4"[filter]="true" filterMatchMode="contains"
                                                     [showClear]="true" optionLabel="libelle" placeholder="{{'locationDataInstitution' | translate}}"  >
@@ -35,7 +35,7 @@
                                             
                                         </div>
 
-                                    <div class="field col-11 md:col-3">
+                                    <div class="field col-11 md:col-5">
                                             <label for="5">{{'locationDataDepartment' | translate}}</label>
                                             <p-dropdown   appendTo="body" [options]="departments" [(ngModel)]="item.department" id="5"[filter]="true" filterMatchMode="contains"
                                                     [showClear]="true" optionLabel="libelle" placeholder="{{'locationDataDepartment' | translate}}"  >
@@ -43,18 +43,10 @@
                                             
                                         </div>
 
-                                    <div class="field col-11 md:col-3">
+                                    <div class="field col-11 md:col-5">
                                             <label for="6">{{'locationDataLocationType' | translate}}</label>
                                             <p-dropdown   appendTo="body" [options]="locationTypes" [(ngModel)]="item.locationType" id="6"[filter]="true" filterMatchMode="contains"
                                                     [showClear]="true" optionLabel="libelle" placeholder="{{'locationDataLocationType' | translate}}"  >
-                                            </p-dropdown>
-                                            
-                                        </div>
-
-                                    <div class="field col-11 md:col-3">
-                                            <label for="7">{{'locationDataDataImportExport' | translate}}</label>
-                                            <p-dropdown   appendTo="body" [options]="dataImportExports" [(ngModel)]="item.dataImportExport" id="7"[filter]="true" filterMatchMode="contains"
-                                                    [showClear]="true" optionLabel="code" placeholder="{{'locationDataDataImportExport' | translate}}"  >
                                             </p-dropdown>
                                             
                                         </div>

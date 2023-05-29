@@ -8,12 +8,10 @@ import {LocationDataDto} from 'src/app/controller/model/LocationData.model';
 import {LocationDataCriteria} from 'src/app/controller/criteria/LocationDataCriteria.model';
 
 
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
-import {LocationTypeDto} from 'src/app/controller/model/LocationType.model';
-import {LocationTypeService} from 'src/app/controller/service/LocationType.service';
 import {InstitutionDto} from 'src/app/controller/model/Institution.model';
 import {InstitutionService} from 'src/app/controller/service/Institution.service';
+import {LocationTypeDto} from 'src/app/controller/model/LocationType.model';
+import {LocationTypeService} from 'src/app/controller/service/LocationType.service';
 import {DepartmentDto} from 'src/app/controller/model/Department.model';
 import {DepartmentService} from 'src/app/controller/service/Department.service';
 
@@ -32,11 +30,10 @@ export class LocationDataEditAdminComponent extends AbstractEditController<Locat
     private _validDepartmentLibelle = true;
     private _validLocationTypeCode = true;
     private _validLocationTypeLibelle = true;
-    private _validDataImportExportCode = true;
 
 
 
-    constructor( private locationDataService: LocationDataService , private dataImportExportService: DataImportExportService, private locationTypeService: LocationTypeService, private institutionService: InstitutionService, private departmentService: DepartmentService) {
+    constructor( private locationDataService: LocationDataService , private institutionService: InstitutionService, private locationTypeService: LocationTypeService, private departmentService: DepartmentService) {
         super(locationDataService);
     }
 
@@ -47,8 +44,6 @@ export class LocationDataEditAdminComponent extends AbstractEditController<Locat
     this.departmentService.findAll().subscribe((data) => this.departments = data);
     this.locationType = new LocationTypeDto();
     this.locationTypeService.findAll().subscribe((data) => this.locationTypes = data);
-    this.dataImportExport = new DataImportExportDto();
-    this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
 }
     public prepareEdit() {
         this.item.dateOfAdmission = this.locationDataService.format(this.item.dateOfAdmission);
@@ -92,24 +87,6 @@ export class LocationDataEditAdminComponent extends AbstractEditController<Locat
    }
   set createLocationTypeDialog(value: boolean) {
        this.locationTypeService.createDialog= value;
-   }
-   get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-   }
-  set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-   }
-   get dataImportExports(): Array<DataImportExportDto> {
-        return this.dataImportExportService.items;
-   }
-   set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-   }
-   get createDataImportExportDialog(): boolean {
-       return this.dataImportExportService.createDialog;
-   }
-  set createDataImportExportDialog(value: boolean) {
-       this.dataImportExportService.createDialog= value;
    }
    get department(): DepartmentDto {
        return this.departmentService.item;
@@ -191,11 +168,5 @@ export class LocationDataEditAdminComponent extends AbstractEditController<Locat
     }
     set validLocationTypeLibelle(value: boolean) {
         this._validLocationTypeLibelle = value;
-    }
-    get validDataImportExportCode(): boolean {
-        return this._validDataImportExportCode;
-    }
-    set validDataImportExportCode(value: boolean) {
-        this._validDataImportExportCode = value;
     }
 }

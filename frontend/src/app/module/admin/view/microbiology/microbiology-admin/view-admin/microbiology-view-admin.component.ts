@@ -10,12 +10,10 @@ import {MicrobiologyCriteria} from 'src/app/controller/criteria/MicrobiologyCrit
 
 import {SeroTypeDto} from 'src/app/controller/model/SeroType.model';
 import {SeroTypeService} from 'src/app/controller/service/SeroType.service';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
-import {AntibioticDto} from 'src/app/controller/model/Antibiotic.model';
-import {AntibioticService} from 'src/app/controller/service/Antibiotic.service';
 import {OrganismDto} from 'src/app/controller/model/Organism.model';
 import {OrganismService} from 'src/app/controller/service/Organism.service';
+import {AntibioticDto} from 'src/app/controller/model/Antibiotic.model';
+import {AntibioticService} from 'src/app/controller/service/Antibiotic.service';
 @Component({
   selector: 'app-microbiology-view-admin',
   templateUrl: './microbiology-view-admin.component.html'
@@ -23,7 +21,7 @@ import {OrganismService} from 'src/app/controller/service/Organism.service';
 export class MicrobiologyViewAdminComponent extends AbstractViewController<MicrobiologyDto, MicrobiologyCriteria, MicrobiologyService> implements OnInit {
 
 
-    constructor(private microbiologyService: MicrobiologyService, private seroTypeService: SeroTypeService, private dataImportExportService: DataImportExportService, private antibioticService: AntibioticService, private organismService: OrganismService){
+    constructor(private microbiologyService: MicrobiologyService, private seroTypeService: SeroTypeService, private organismService: OrganismService, private antibioticService: AntibioticService){
         super(microbiologyService);
     }
 
@@ -34,8 +32,6 @@ export class MicrobiologyViewAdminComponent extends AbstractViewController<Micro
         this.seroTypeService.findAll().subscribe((data) => this.seroTypes = data);
         this.antibiotic = new AntibioticDto();
         this.antibioticService.findAll().subscribe((data) => this.antibiotics = data);
-        this.dataImportExport = new DataImportExportDto();
-        this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
     }
 
 
@@ -62,18 +58,6 @@ export class MicrobiologyViewAdminComponent extends AbstractViewController<Micro
     }
     set antibiotics(value: Array<AntibioticDto>) {
         this.antibioticService.items = value;
-    }
-    get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports():Array<DataImportExportDto> {
-       return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
     }
     get organism(): OrganismDto {
        return this.organismService.item;

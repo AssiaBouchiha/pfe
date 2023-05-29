@@ -1,4 +1,3 @@
-import {DataImportExportDto} from './DataImportExport.model';
 import {AnimalSpecieDto} from './AnimalSpecie.model';
 import {AnimalTypeDto} from './AnimalType.model';
 import {AgeCategoryDto} from './AgeCategory.model';
@@ -18,6 +17,5 @@ export class AnimalDto  extends BaseDto{
     public animalSpecie: AnimalSpecieDto ;
     public animalType: AnimalTypeDto ;
     public marketCategory: MarketCategoryDto ;
-    public dataImportExport: DataImportExportDto ;
 
 }

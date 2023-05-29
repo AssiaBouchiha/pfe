@@ -5,8 +5,6 @@ import { AbstractCreateController } from 'src/app/zynerator/controller/AbstractC
 import {SpecimenService} from 'src/app/controller/service/Specimen.service';
 import {SpecimenDto} from 'src/app/controller/model/Specimen.model';
 import {SpecimenCriteria} from 'src/app/controller/criteria/SpecimenCriteria.model';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
 import {ReasonDto} from 'src/app/controller/model/Reason.model';
 import {ReasonService} from 'src/app/controller/service/Reason.service';
 @Component({
@@ -20,17 +18,14 @@ export class SpecimenCreateAdminComponent extends AbstractCreateController<Speci
    private _validSpecimenCode = true;
     private _validReasonCode = true;
     private _validReasonLibelle = true;
-    private _validDataImportExportCode = true;
 
-    constructor( private specimenService: SpecimenService , private dataImportExportService: DataImportExportService, private reasonService: ReasonService) {
+    constructor( private specimenService: SpecimenService , private reasonService: ReasonService) {
         super(specimenService);
     }
 
     ngOnInit(): void {
     this.reason = new ReasonDto();
     this.reasonService.findAll().subscribe((data) => this.reasons = data);
-    this.dataImportExport = new DataImportExportDto();
-    this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
 }
 
 
@@ -70,24 +65,6 @@ export class SpecimenCreateAdminComponent extends AbstractCreateController<Speci
      }
     }
 
-    get dataImportExport(): DataImportExportDto {
-        return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports(): Array<DataImportExportDto> {
-        return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-    }
-    get createDataImportExportDialog(): boolean {
-       return this.dataImportExportService.createDialog;
-    }
-    set createDataImportExportDialog(value: boolean) {
-        this.dataImportExportService.createDialog= value;
-    }
     get reason(): ReasonDto {
         return this.reasonService.item;
     }
@@ -128,12 +105,6 @@ export class SpecimenCreateAdminComponent extends AbstractCreateController<Speci
     }
     set validReasonLibelle(value: boolean) {
         this._validReasonLibelle = value;
-    }
-    get validDataImportExportCode(): boolean {
-        return this._validDataImportExportCode;
-    }
-    set validDataImportExportCode(value: boolean) {
-        this._validDataImportExportCode = value;
     }
 
 

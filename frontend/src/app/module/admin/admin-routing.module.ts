@@ -121,20 +121,8 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
                         },
                         {
 
-                            path: 'dataImportexport',
-                            loadChildren: () => import('./view/dataImportexport/dataImportexport-admin-routing.module').then(x=>x.DataImportexportAdminRoutingModule),
-                            canActivate: [AuthGuard],
-                        },
-                        {
-
                             path: 'location',
                             loadChildren: () => import('./view/location/location-admin-routing.module').then(x=>x.LocationAdminRoutingModule),
-                            canActivate: [AuthGuard],
-                        },
-                        {
-
-                            path: 'dataImportExport',
-                            loadChildren: () => import('./view/dataImportExport/dataImportExport-admin-routing.module').then(x=>x.DataImportExportAdminRoutingModule),
                             canActivate: [AuthGuard],
                         },
                         {
@@ -147,12 +135,6 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
 
                             path: 'config',
                             loadChildren: () => import('./view/config/config-admin-routing.module').then(x=>x.ConfigAdminRoutingModule),
-                            canActivate: [AuthGuard],
-                        },
-                        {
-
-                            path: 'serotype',
-                            loadChildren: () => import('./view/serotype/serotype-admin-routing.module').then(x=>x.SerotypeAdminRoutingModule),
                             canActivate: [AuthGuard],
                         },
                     ]

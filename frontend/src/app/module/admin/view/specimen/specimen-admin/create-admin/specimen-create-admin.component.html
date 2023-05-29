@@ -41,13 +41,6 @@
                                                     <label></label>
                                                     <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateReason('Reason')" class="p-button-success one-colonne-btn-success-align"></button>
                                                 </div>
-                                            <div class="field col-11 md:col-5">
-                                                <label for="5">{{'specimenDataImportExport' | translate}}</label>
-                                                <p-dropdown  appendTo="body"  [options]="dataImportExports" [(ngModel)]="item.dataImportExport" id="5" [filter]="true" filterMatchMode="contains"
-                                                        [showClear]="true" optionLabel="code" placeholder="{{'specimenDataImportExport' | translate}}"  >
-                                                </p-dropdown>
-                                                
-                                            </div>
                                 </div>
                             </p-tabPanel>
 

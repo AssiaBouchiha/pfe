@@ -7,10 +7,10 @@ import {LocationDto} from 'src/app/controller/model/Location.model';
 import {LocationCriteria} from 'src/app/controller/criteria/LocationCriteria.model';
 import {LaboratoryDto} from 'src/app/controller/model/Laboratory.model';
 import {LaboratoryService} from 'src/app/controller/service/Laboratory.service';
-import {LocationTypeDto} from 'src/app/controller/model/LocationType.model';
-import {LocationTypeService} from 'src/app/controller/service/LocationType.service';
 import {InstitutionDto} from 'src/app/controller/model/Institution.model';
 import {InstitutionService} from 'src/app/controller/service/Institution.service';
+import {LocationTypeDto} from 'src/app/controller/model/LocationType.model';
+import {LocationTypeService} from 'src/app/controller/service/LocationType.service';
 import {DepartmentDto} from 'src/app/controller/model/Department.model';
 import {DepartmentService} from 'src/app/controller/service/Department.service';
 @Component({
@@ -30,7 +30,7 @@ export class LocationCreateAdminComponent extends AbstractCreateController<Locat
     private _validLocationTypeLibelle = true;
     private _validLaboratoryCode = true;
 
-    constructor( private locationService: LocationService , private laboratoryService: LaboratoryService, private locationTypeService: LocationTypeService, private institutionService: InstitutionService, private departmentService: DepartmentService) {
+    constructor( private locationService: LocationService , private laboratoryService: LaboratoryService, private institutionService: InstitutionService, private locationTypeService: LocationTypeService, private departmentService: DepartmentService) {
         super(locationService);
     }
 

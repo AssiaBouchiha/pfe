@@ -14,7 +14,6 @@ import {AntibioticCriteria} from '../criteria/AntibioticCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
 import {MicrobiologyDto} from '../model/Microbiology.model';
-import {LaboratoryAntibioticDto} from '../model/LaboratoryAntibiotic.model';
 
 @Injectable({
   providedIn: 'root'

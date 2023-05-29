@@ -4,33 +4,29 @@
         <p-tabView>
             <p-tabPanel header="{{'locationDataTabPan' | translate}}">
                 <div class="grid">
-                    <div class="field col-12 md:col-4">
+                    <div class="field col-12 md:col-6">
                         <label for="1">{{'Code' | translate}}</label>
                         <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Code' | translate}}" autofocus  id="1" [(ngModel)]="item.code">
                     </div>
-                    <div class="field col-12 md:col-4">
+                    <div class="field col-12 md:col-6">
                         <label for="2">{{'Date of admission' | translate}}</label>
                         <p-calendar id="2" [disabled]="true"  [showTime]="true" [showSeconds]="false" placeholder="{{'Date of admission' | translate}}"  [(ngModel)]="item.dateOfAdmission" dateFormat="{{dateFormat}}"></p-calendar>
                     </div>
-                    <div class="field col-12 md:col-4">
+                    <div class="field col-12 md:col-6">
                         <label for="3">{{'Location' | translate}}</label>
                         <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'Location' | translate}}" autofocus  id="3" [(ngModel)]="item.location">
                     </div>
-                    <div class="field col-12 md:col-4">
+                    <div class="field col-12 md:col-6">
                         <label for="4">{{'Institution' | translate}}</label>
                         <p-dropdown [options]="institutions" [(ngModel)]="item.institution" id="4" [disabled]="true" optionLabel="libelle" placeholder="{{'Institution' | translate}}"></p-dropdown>
                     </div>
-                    <div class="field col-12 md:col-4">
+                    <div class="field col-12 md:col-6">
                         <label for="5">{{'Department' | translate}}</label>
                         <p-dropdown [options]="departments" [(ngModel)]="item.department" id="5" [disabled]="true" optionLabel="libelle" placeholder="{{'Department' | translate}}"></p-dropdown>
                     </div>
-                    <div class="field col-12 md:col-4">
+                    <div class="field col-12 md:col-6">
                         <label for="6">{{'Location type' | translate}}</label>
                         <p-dropdown [options]="locationTypes" [(ngModel)]="item.locationType" id="6" [disabled]="true" optionLabel="libelle" placeholder="{{'Location type' | translate}}"></p-dropdown>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <label for="7">{{'Data import export' | translate}}</label>
-                        <p-dropdown [options]="dataImportExports" [(ngModel)]="item.dataImportExport" id="7" [disabled]="true" optionLabel="code" placeholder="{{'Data import export' | translate}}"></p-dropdown>
                     </div>
                 </div>
             </p-tabPanel>

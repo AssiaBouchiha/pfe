@@ -1,4 +1,3 @@
-import {DataImportExportCriteria} from './DataImportExportCriteria.model';
 import {AnimalSpecieCriteria} from './AnimalSpecieCriteria.model';
 import {AnimalTypeCriteria} from './AnimalTypeCriteria.model';
 import {AgeCategoryCriteria} from './AgeCategoryCriteria.model';
@@ -26,7 +25,5 @@ export class AnimalCriteria  extends   BaseCriteria  {
   public animalTypes: Array<AnimalTypeCriteria> ;
   public marketCategory: MarketCategoryCriteria ;
   public marketCategorys: Array<MarketCategoryCriteria> ;
-  public dataImportExport: DataImportExportCriteria ;
-  public dataImportExports: Array<DataImportExportCriteria> ;
 
 }

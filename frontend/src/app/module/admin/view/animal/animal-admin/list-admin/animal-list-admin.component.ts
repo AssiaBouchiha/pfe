@@ -10,9 +10,7 @@ import { AgeCategoryService } from 'src/app/controller/service/AgeCategory.servi
 import { AnimalSpecieService } from 'src/app/controller/service/AnimalSpecie.service';
 import { AnimalTypeService } from 'src/app/controller/service/AnimalType.service';
 import { MarketCategoryService } from 'src/app/controller/service/MarketCategory.service';
-import { DataImportExportService } from 'src/app/controller/service/DataImportExport.service';
 
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
 import {AnimalSpecieDto} from 'src/app/controller/model/AnimalSpecie.model';
 import {AnimalTypeDto} from 'src/app/controller/model/AnimalType.model';
 import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
@@ -33,9 +31,8 @@ export class AnimalListAdminComponent extends AbstractListController<AnimalDto, 
     animalSpecies :Array<AnimalSpecieDto>;
     animalTypes :Array<AnimalTypeDto>;
     marketCategorys :Array<MarketCategoryDto>;
-    dataImportExports :Array<DataImportExportDto>;
   
-    constructor(animalService: AnimalService, private genderService: GenderService, private ageCategoryService: AgeCategoryService, private animalSpecieService: AnimalSpecieService, private animalTypeService: AnimalTypeService, private marketCategoryService: MarketCategoryService, private dataImportExportService: DataImportExportService) {
+    constructor(animalService: AnimalService, private genderService: GenderService, private ageCategoryService: AgeCategoryService, private animalSpecieService: AnimalSpecieService, private animalTypeService: AnimalTypeService, private marketCategoryService: MarketCategoryService) {
         super(animalService);
     }
 
@@ -48,7 +45,6 @@ export class AnimalListAdminComponent extends AbstractListController<AnimalDto, 
       this.loadAnimalSpecie();
       this.loadAnimalType();
       this.loadMarketCategory();
-      this.loadDataImportExport();
     }
 
     public async loadAnimals(){
@@ -69,7 +65,6 @@ export class AnimalListAdminComponent extends AbstractListController<AnimalDto, 
             {field: 'animalSpecie?.libelle', header: 'Animal specie'},
             {field: 'animalType?.libelle', header: 'Animal type'},
             {field: 'marketCategory?.libelle', header: 'Market category'},
-            {field: 'dataImportExport?.code', header: 'Data import export'},
         ];
     }
 
@@ -104,12 +99,6 @@ export class AnimalListAdminComponent extends AbstractListController<AnimalDto, 
         isPermistted ? this.marketCategoryService.findAllOptimized().subscribe(marketCategorys => this.marketCategorys = marketCategorys,error=>console.log(error))
         : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
     }
-    public async loadDataImportExport(){
-        await this.roleService.findAll();
-        const isPermistted = await this.roleService.isPermitted('Animal', 'list');
-        isPermistted ? this.dataImportExportService.findAllOptimized().subscribe(dataImportExports => this.dataImportExports = dataImportExports,error=>console.log(error))
-        : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
-    }
 
 	public initDuplicate(res: AnimalDto) {
 	}
@@ -125,7 +114,6 @@ export class AnimalListAdminComponent extends AbstractListController<AnimalDto, 
                 'Animal specie': e.animalSpecie?.libelle ,
                 'Animal type': e.animalType?.libelle ,
                 'Market category': e.marketCategory?.libelle ,
-                'Data import export': e.dataImportExport?.code ,
             }
         });
 
@@ -138,7 +126,6 @@ export class AnimalListAdminComponent extends AbstractListController<AnimalDto, 
         //'Animal specie': this.criteria.animalSpecie?.libelle ? this.criteria.animalSpecie?.libelle : environment.emptyForExport ,
         //'Animal type': this.criteria.animalType?.libelle ? this.criteria.animalType?.libelle : environment.emptyForExport ,
         //'Market category': this.criteria.marketCategory?.libelle ? this.criteria.marketCategory?.libelle : environment.emptyForExport ,
-        //'Data import export': this.criteria.dataImportExport?.code ? this.criteria.dataImportExport?.code : environment.emptyForExport ,
         }];
       }
 }

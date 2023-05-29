@@ -5,12 +5,10 @@ import { AbstractCreateController } from 'src/app/zynerator/controller/AbstractC
 import {PatientService} from 'src/app/controller/service/Patient.service';
 import {PatientDto} from 'src/app/controller/model/Patient.model';
 import {PatientCriteria} from 'src/app/controller/criteria/PatientCriteria.model';
-import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
-import {AgeCategoryService} from 'src/app/controller/service/AgeCategory.service';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
 import {GenderDto} from 'src/app/controller/model/Gender.model';
 import {GenderService} from 'src/app/controller/service/Gender.service';
+import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
+import {AgeCategoryService} from 'src/app/controller/service/AgeCategory.service';
 @Component({
   selector: 'app-patient-create-admin',
   templateUrl: './patient-create-admin.component.html'
@@ -24,9 +22,8 @@ export class PatientCreateAdminComponent extends AbstractCreateController<Patien
     private _validGenderLibelle = true;
     private _validAgeCategoryCode = true;
     private _validAgeCategoryLibelle = true;
-    private _validDataImportExportCode = true;
 
-    constructor( private patientService: PatientService , private ageCategoryService: AgeCategoryService, private dataImportExportService: DataImportExportService, private genderService: GenderService) {
+    constructor( private patientService: PatientService , private genderService: GenderService, private ageCategoryService: AgeCategoryService) {
         super(patientService);
     }
 
@@ -35,8 +32,6 @@ export class PatientCreateAdminComponent extends AbstractCreateController<Patien
     this.genderService.findAll().subscribe((data) => this.genders = data);
     this.ageCategory = new AgeCategoryDto();
     this.ageCategoryService.findAll().subscribe((data) => this.ageCategorys = data);
-    this.dataImportExport = new DataImportExportDto();
-    this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
 }
 
 
@@ -82,24 +77,6 @@ export class PatientCreateAdminComponent extends AbstractCreateController<Patien
     }
     set createGenderDialog(value: boolean) {
         this.genderService.createDialog= value;
-    }
-    get dataImportExport(): DataImportExportDto {
-        return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports(): Array<DataImportExportDto> {
-        return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-    }
-    get createDataImportExportDialog(): boolean {
-       return this.dataImportExportService.createDialog;
-    }
-    set createDataImportExportDialog(value: boolean) {
-        this.dataImportExportService.createDialog= value;
     }
     get ageCategory(): AgeCategoryDto {
         return this.ageCategoryService.item;
@@ -153,12 +130,6 @@ export class PatientCreateAdminComponent extends AbstractCreateController<Patien
     }
     set validAgeCategoryLibelle(value: boolean) {
         this._validAgeCategoryLibelle = value;
-    }
-    get validDataImportExportCode(): boolean {
-        return this._validDataImportExportCode;
-    }
-    set validDataImportExportCode(value: boolean) {
-        this._validDataImportExportCode = value;
     }
 
 

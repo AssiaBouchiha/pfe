@@ -1,5 +1,4 @@
 import {DepartmentCriteria} from './DepartmentCriteria.model';
-import {DataImportExportCriteria} from './DataImportExportCriteria.model';
 import {InstitutionCriteria} from './InstitutionCriteria.model';
 import {LocationTypeCriteria} from './LocationTypeCriteria.model';
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
@@ -21,7 +20,5 @@ export class LocationDataCriteria  extends   BaseCriteria  {
   public departments: Array<DepartmentCriteria> ;
   public locationType: LocationTypeCriteria ;
   public locationTypes: Array<LocationTypeCriteria> ;
-  public dataImportExport: DataImportExportCriteria ;
-  public dataImportExports: Array<DataImportExportCriteria> ;
 
 }

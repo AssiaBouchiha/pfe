@@ -41,22 +41,17 @@
                             </p-dropdown>
                         </span>
                         <span class=" p-float-label mr-3 align-search-items mt-4">
-                            <p-dropdown [options]="dataImportExports" [(ngModel)]="criteria.dataImportExport" id="7" [filter]="true"
-                                        [showClear]="true"  placeholder="{{'Data import export' | translate}}" optionLabel="code">
+                            <p-dropdown [options]="dataAnalysiss" [(ngModel)]="criteria.dataAnalysis" id="9" [filter]="true"
+                                        [showClear]="true"  placeholder="{{'Data analysis' | translate}}" optionLabel="code">
                             </p-dropdown>
                         </span>
                         <span class=" p-float-label mr-3 align-search-items mt-4">
-                            <p-dropdown [options]="dataanalysiss" [(ngModel)]="criteria.dataanalysis" id="10" [filter]="true"
-                                        [showClear]="true"  placeholder="{{'Dataanalysis' | translate}}" optionLabel="code">
+                            <p-dropdown [options]="dataArchives" [(ngModel)]="criteria.dataArchive" id="10" [filter]="true"
+                                        [showClear]="true"  placeholder="{{'Data archive' | translate}}" optionLabel="code">
                             </p-dropdown>
                         </span>
                         <span class=" p-float-label mr-3 align-search-items mt-4">
-                            <p-dropdown [options]="dataarchives" [(ngModel)]="criteria.dataarchive" id="11" [filter]="true"
-                                        [showClear]="true"  placeholder="{{'Dataarchive' | translate}}" optionLabel="code">
-                            </p-dropdown>
-                        </span>
-                        <span class=" p-float-label mr-3 align-search-items mt-4">
-                            <p-dropdown [options]="reports" [(ngModel)]="criteria.report" id="12" [filter]="true"
+                            <p-dropdown [options]="reports" [(ngModel)]="criteria.report" id="11" [filter]="true"
                                         [showClear]="true"  placeholder="{{'Report' | translate}}" optionLabel="code">
                             </p-dropdown>
                         </span>
@@ -69,7 +64,7 @@
 
 
             <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['code', 'nom', 'bloqued', 'city', 'locationcode', 'dataImportExportcode', 'dataanalysiscode', 'dataarchivecode', 'reportcode']" [(selection)]="selections"
+                    [globalFilterFields]="['code', 'nom', 'bloqued', 'city', 'locationcode', 'dataAnalysiscode', 'dataArchivecode', 'reportcode']" [(selection)]="selections"
                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
                     currentPageReportTemplate="{{'Les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
                     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
@@ -131,26 +126,18 @@
                         </th>
                                 
                                 
-                        <th pSortableColumn="dataImportExport">
+                        <th pSortableColumn="dataAnalysis">
                             <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'Data import export' | translate}}</span>
-                                <p-sortIcon field="dataImportExport"></p-sortIcon>
+                                <span>{{'Data analysis' | translate}}</span>
+                                <p-sortIcon field="dataAnalysis"></p-sortIcon>
                             </div>
                         </th>
                                 
                                 
-                        <th pSortableColumn="dataanalysis">
+                        <th pSortableColumn="dataArchive">
                             <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'Dataanalysis' | translate}}</span>
-                                <p-sortIcon field="dataanalysis"></p-sortIcon>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="dataarchive">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'Dataarchive' | translate}}</span>
-                                <p-sortIcon field="dataarchive"></p-sortIcon>
+                                <span>{{'Data archive' | translate}}</span>
+                                <p-sortIcon field="dataArchive"></p-sortIcon>
                             </div>
                         </th>
                                 
@@ -188,13 +175,10 @@
                         <td>{{element.location?.code}}</td>
                             
                             
-                        <td>{{element.dataImportExport?.code}}</td>
+                        <td>{{element.dataAnalysis?.code}}</td>
                             
                             
-                        <td>{{element.dataanalysis?.code}}</td>
-                            
-                            
-                        <td>{{element.dataarchive?.code}}</td>
+                        <td>{{element.dataArchive?.code}}</td>
                             
                             
                         <td>{{element.report?.code}}</td>

@@ -1,4 +1,3 @@
-import {DataImportExportCriteria} from './DataImportExportCriteria.model';
 import {AgeCategoryCriteria} from './AgeCategoryCriteria.model';
 import {GenderCriteria} from './GenderCriteria.model';
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
@@ -22,7 +21,5 @@ export class PlantCriteria  extends   BaseCriteria  {
   public genders: Array<GenderCriteria> ;
   public ageCategory: AgeCategoryCriteria ;
   public ageCategorys: Array<AgeCategoryCriteria> ;
-  public dataImportExport: DataImportExportCriteria ;
-  public dataImportExports: Array<DataImportExportCriteria> ;
 
 }

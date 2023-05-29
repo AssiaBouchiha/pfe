@@ -8,12 +8,10 @@ import {LocationDataService} from 'src/app/controller/service/LocationData.servi
 import {LocationDataDto} from 'src/app/controller/model/LocationData.model';
 import {LocationDataCriteria} from 'src/app/controller/criteria/LocationDataCriteria.model';
 
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
-import {LocationTypeDto} from 'src/app/controller/model/LocationType.model';
-import {LocationTypeService} from 'src/app/controller/service/LocationType.service';
 import {InstitutionDto} from 'src/app/controller/model/Institution.model';
 import {InstitutionService} from 'src/app/controller/service/Institution.service';
+import {LocationTypeDto} from 'src/app/controller/model/LocationType.model';
+import {LocationTypeService} from 'src/app/controller/service/LocationType.service';
 import {DepartmentDto} from 'src/app/controller/model/Department.model';
 import {DepartmentService} from 'src/app/controller/service/Department.service';
 @Component({
@@ -23,7 +21,7 @@ import {DepartmentService} from 'src/app/controller/service/Department.service';
 export class LocationDataViewAdminComponent extends AbstractViewController<LocationDataDto, LocationDataCriteria, LocationDataService> implements OnInit {
 
 
-    constructor(private locationDataService: LocationDataService, private dataImportExportService: DataImportExportService, private locationTypeService: LocationTypeService, private institutionService: InstitutionService, private departmentService: DepartmentService){
+    constructor(private locationDataService: LocationDataService, private institutionService: InstitutionService, private locationTypeService: LocationTypeService, private departmentService: DepartmentService){
         super(locationDataService);
     }
 
@@ -34,8 +32,6 @@ export class LocationDataViewAdminComponent extends AbstractViewController<Locat
         this.departmentService.findAll().subscribe((data) => this.departments = data);
         this.locationType = new LocationTypeDto();
         this.locationTypeService.findAll().subscribe((data) => this.locationTypes = data);
-        this.dataImportExport = new DataImportExportDto();
-        this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
     }
 
 
@@ -50,18 +46,6 @@ export class LocationDataViewAdminComponent extends AbstractViewController<Locat
     }
     set locationTypes(value: Array<LocationTypeDto>) {
         this.locationTypeService.items = value;
-    }
-    get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports():Array<DataImportExportDto> {
-       return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
     }
     get department(): DepartmentDto {
        return this.departmentService.item;

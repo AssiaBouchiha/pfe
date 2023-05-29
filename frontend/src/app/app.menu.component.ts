@@ -126,17 +126,6 @@ export class AppMenuComponent implements OnInit {
                 ]
               },
               {
-                label: 'Gestion AbonneDataImportExport',
-                icon: 'pi pi-wallet',
-                items:[
-                    {
-                      label: 'Liste data import export',
-                      icon: 'pi pi-fw pi-plus-circle',
-                      routerLink: ['/app/admin/dataImportExport/data-import-export/list']
-                    },
-                ]
-              },
-              {
                 label: 'Gestion DataArchive',
                 icon: 'pi pi-wallet',
                 items:[
@@ -252,17 +241,6 @@ export class AppMenuComponent implements OnInit {
                       label: 'Liste environment',
                       icon: 'pi pi-fw pi-plus-circle',
                       routerLink: ['/app/admin/environment/environment/list']
-                    },
-                ]
-              },
-              {
-                label: 'Gestion Serotype',
-                icon: 'pi pi-wallet',
-                items:[
-                    {
-                      label: 'Liste serotype',
-                      icon: 'pi pi-fw pi-plus-circle',
-                      routerLink: ['/app/admin/serotype/serotype/list']
                     },
                 ]
               },

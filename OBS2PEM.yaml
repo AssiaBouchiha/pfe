@@ -4,13 +4,13 @@ Laboratory_MS(ms1)_ROLES(admin)_SUB-MODULE(laboratory)_MENU(Gestion Laboratory):
   nom: String
   bloqued: Boolean
   city: String
-  antibiotic: Antibiotic List
+  antibiotics: Antibiotic List
   location: Location
   dataImportExport: DataImportExport
   alerts: Alert List
   notifications: Notification List
-  dataanalysis: DataAnalysis
-  dataarchive: DataArchive
+  dataAnalysis: DataAnalysis
+  dataArchive: DataArchive
   report: Report
 
 Alert_MS(ms1)_ROLES(admin)_SUB-MODULE(alert)_MENU(Gestion Alert):

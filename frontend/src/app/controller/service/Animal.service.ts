@@ -13,7 +13,6 @@ import {AnimalDto} from '../model/Animal.model';
 import {AnimalCriteria} from '../criteria/AnimalCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {AnimalSpecieDto} from '../model/AnimalSpecie.model';
 import {AnimalTypeDto} from '../model/AnimalType.model';
 import {AgeCategoryDto} from '../model/AgeCategory.model';

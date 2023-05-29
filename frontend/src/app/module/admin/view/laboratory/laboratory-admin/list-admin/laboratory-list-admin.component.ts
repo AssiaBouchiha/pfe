@@ -6,15 +6,13 @@ import {AbstractListController} from 'src/app/zynerator/controller/AbstractListC
 import { environment } from 'src/environments/environment';
 
 import { LocationService } from 'src/app/controller/service/Location.service';
-import { DataImportExportService } from 'src/app/controller/service/DataImportExport.service';
 import { DataAnalysisService } from 'src/app/controller/service/DataAnalysis.service';
 import { DataArchiveService } from 'src/app/controller/service/DataArchive.service';
 import { ReportService } from 'src/app/controller/service/Report.service';
 
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
 import {DataAnalysisDto} from 'src/app/controller/model/DataAnalysis.model';
 import {ReportDto} from 'src/app/controller/model/Report.model';
-import {AntibioticDto} from 'src/app/controller/model/Antibiotic.model';
+import {LaboratoryAntibioticDto} from 'src/app/controller/model/LaboratoryAntibiotic.model';
 import {AlertDto} from 'src/app/controller/model/Alert.model';
 import {LocationDto} from 'src/app/controller/model/Location.model';
 import {DataArchiveDto} from 'src/app/controller/model/DataArchive.model';
@@ -31,12 +29,11 @@ export class LaboratoryListAdminComponent extends AbstractListController<Laborat
 
      yesOrNoBloqued :any[] =[];
     locations :Array<LocationDto>;
-    dataImportExports :Array<DataImportExportDto>;
-    dataanalysiss :Array<DataAnalysisDto>;
-    dataarchives :Array<DataArchiveDto>;
+    dataAnalysiss :Array<DataAnalysisDto>;
+    dataArchives :Array<DataArchiveDto>;
     reports :Array<ReportDto>;
   
-    constructor(laboratoryService: LaboratoryService, private locationService: LocationService, private dataImportExportService: DataImportExportService, private dataAnalysisService: DataAnalysisService, private dataArchiveService: DataArchiveService, private reportService: ReportService) {
+    constructor(laboratoryService: LaboratoryService, private locationService: LocationService, private dataAnalysisService: DataAnalysisService, private dataArchiveService: DataArchiveService, private reportService: ReportService) {
         super(laboratoryService);
     }
 
@@ -45,9 +42,8 @@ export class LaboratoryListAdminComponent extends AbstractListController<Laborat
       this.initExport();
       this.initCol();
       this.loadLocation();
-      this.loadDataImportExport();
-      this.loadDataanalysis();
-      this.loadDataarchive();
+      this.loadDataAnalysis();
+      this.loadDataArchive();
       this.loadReport();
     this.yesOrNoBloqued =  [{label: 'Bloqued', value: null},{label: 'Oui', value: 1},{label: 'Non', value: 0}];
     }
@@ -67,9 +63,8 @@ export class LaboratoryListAdminComponent extends AbstractListController<Laborat
             {field: 'bloqued', header: 'Bloqued'},
             {field: 'city', header: 'City'},
             {field: 'location?.code', header: 'Location'},
-            {field: 'dataImportExport?.code', header: 'Data import export'},
-            {field: 'dataanalysis?.code', header: 'Dataanalysis'},
-            {field: 'dataarchive?.code', header: 'Dataarchive'},
+            {field: 'dataAnalysis?.code', header: 'Data analysis'},
+            {field: 'dataArchive?.code', header: 'Data archive'},
             {field: 'report?.code', header: 'Report'},
         ];
     }
@@ -81,22 +76,16 @@ export class LaboratoryListAdminComponent extends AbstractListController<Laborat
         isPermistted ? this.locationService.findAllOptimized().subscribe(locations => this.locations = locations,error=>console.log(error))
         : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
     }
-    public async loadDataImportExport(){
+    public async loadDataAnalysis(){
         await this.roleService.findAll();
         const isPermistted = await this.roleService.isPermitted('Laboratory', 'list');
-        isPermistted ? this.dataImportExportService.findAllOptimized().subscribe(dataImportExports => this.dataImportExports = dataImportExports,error=>console.log(error))
+        isPermistted ? this.dataAnalysisService.findAllOptimized().subscribe(dataAnalysiss => this.dataAnalysiss = dataAnalysiss,error=>console.log(error))
         : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
     }
-    public async loadDataanalysis(){
+    public async loadDataArchive(){
         await this.roleService.findAll();
         const isPermistted = await this.roleService.isPermitted('Laboratory', 'list');
-        isPermistted ? this.dataAnalysisService.findAllOptimized().subscribe(dataanalysiss => this.dataanalysiss = dataanalysiss,error=>console.log(error))
-        : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
-    }
-    public async loadDataarchive(){
-        await this.roleService.findAll();
-        const isPermistted = await this.roleService.isPermitted('Laboratory', 'list');
-        isPermistted ? this.dataArchiveService.findAllOptimized().subscribe(dataarchives => this.dataarchives = dataarchives,error=>console.log(error))
+        isPermistted ? this.dataArchiveService.findAllOptimized().subscribe(dataArchives => this.dataArchives = dataArchives,error=>console.log(error))
         : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
     }
     public async loadReport(){
@@ -107,8 +96,8 @@ export class LaboratoryListAdminComponent extends AbstractListController<Laborat
     }
 
 	public initDuplicate(res: LaboratoryDto) {
-        if (res.antibiotic != null) {
-             res.antibiotic.forEach(d => { d.laboratory = null; d.id = null; });
+        if (res.laboratoryAntibiotics != null) {
+             res.laboratoryAntibiotics.forEach(d => { d.laboratory = null; d.id = null; });
         }
         if (res.alerts != null) {
              res.alerts.forEach(d => { d.laboratory = null; d.id = null; });
@@ -126,9 +115,8 @@ export class LaboratoryListAdminComponent extends AbstractListController<Laborat
                 'Bloqued': e.bloqued? 'Vrai' : 'Faux' ,
                  'City': e.city ,
                 'Location': e.location?.code ,
-                'Data import export': e.dataImportExport?.code ,
-                'Dataanalysis': e.dataanalysis?.code ,
-                'Dataarchive': e.dataarchive?.code ,
+                'Data analysis': e.dataAnalysis?.code ,
+                'Data archive': e.dataArchive?.code ,
                 'Report': e.report?.code ,
             }
         });
@@ -139,9 +127,8 @@ export class LaboratoryListAdminComponent extends AbstractListController<Laborat
             'Bloqued': this.criteria.bloqued ? (this.criteria.bloqued ? environment.trueValue : environment.falseValue) : environment.emptyForExport ,
             'City': this.criteria.city ? this.criteria.city : environment.emptyForExport ,
         //'Location': this.criteria.location?.code ? this.criteria.location?.code : environment.emptyForExport ,
-        //'Data import export': this.criteria.dataImportExport?.code ? this.criteria.dataImportExport?.code : environment.emptyForExport ,
-        //'Dataanalysis': this.criteria.dataanalysis?.code ? this.criteria.dataanalysis?.code : environment.emptyForExport ,
-        //'Dataarchive': this.criteria.dataarchive?.code ? this.criteria.dataarchive?.code : environment.emptyForExport ,
+        //'Data analysis': this.criteria.dataAnalysis?.code ? this.criteria.dataAnalysis?.code : environment.emptyForExport ,
+        //'Data archive': this.criteria.dataArchive?.code ? this.criteria.dataArchive?.code : environment.emptyForExport ,
         //'Report': this.criteria.report?.code ? this.criteria.report?.code : environment.emptyForExport ,
         }];
       }

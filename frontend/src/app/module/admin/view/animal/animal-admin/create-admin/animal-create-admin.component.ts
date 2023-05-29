@@ -5,18 +5,16 @@ import { AbstractCreateController } from 'src/app/zynerator/controller/AbstractC
 import {AnimalService} from 'src/app/controller/service/Animal.service';
 import {AnimalDto} from 'src/app/controller/model/Animal.model';
 import {AnimalCriteria} from 'src/app/controller/criteria/AnimalCriteria.model';
-import {AnimalTypeDto} from 'src/app/controller/model/AnimalType.model';
-import {AnimalTypeService} from 'src/app/controller/service/AnimalType.service';
-import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
-import {AgeCategoryService} from 'src/app/controller/service/AgeCategory.service';
-import {MarketCategoryDto} from 'src/app/controller/model/MarketCategory.model';
-import {MarketCategoryService} from 'src/app/controller/service/MarketCategory.service';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
 import {GenderDto} from 'src/app/controller/model/Gender.model';
 import {GenderService} from 'src/app/controller/service/Gender.service';
+import {AnimalTypeDto} from 'src/app/controller/model/AnimalType.model';
+import {AnimalTypeService} from 'src/app/controller/service/AnimalType.service';
+import {MarketCategoryDto} from 'src/app/controller/model/MarketCategory.model';
+import {MarketCategoryService} from 'src/app/controller/service/MarketCategory.service';
 import {AnimalSpecieDto} from 'src/app/controller/model/AnimalSpecie.model';
 import {AnimalSpecieService} from 'src/app/controller/service/AnimalSpecie.service';
+import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
+import {AgeCategoryService} from 'src/app/controller/service/AgeCategory.service';
 @Component({
   selector: 'app-animal-create-admin',
   templateUrl: './animal-create-admin.component.html'
@@ -37,9 +35,8 @@ export class AnimalCreateAdminComponent extends AbstractCreateController<AnimalD
     private _validAnimalTypeLibelle = true;
     private _validMarketCategoryCode = true;
     private _validMarketCategoryLibelle = true;
-    private _validDataImportExportCode = true;
 
-    constructor( private animalService: AnimalService , private animalTypeService: AnimalTypeService, private ageCategoryService: AgeCategoryService, private marketCategoryService: MarketCategoryService, private dataImportExportService: DataImportExportService, private genderService: GenderService, private animalSpecieService: AnimalSpecieService) {
+    constructor( private animalService: AnimalService , private genderService: GenderService, private animalTypeService: AnimalTypeService, private marketCategoryService: MarketCategoryService, private animalSpecieService: AnimalSpecieService, private ageCategoryService: AgeCategoryService) {
         super(animalService);
     }
 
@@ -54,8 +51,6 @@ export class AnimalCreateAdminComponent extends AbstractCreateController<AnimalD
     this.animalTypeService.findAll().subscribe((data) => this.animalTypes = data);
     this.marketCategory = new MarketCategoryDto();
     this.marketCategoryService.findAll().subscribe((data) => this.marketCategorys = data);
-    this.dataImportExport = new DataImportExportDto();
-    this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
 }
 
 
@@ -133,24 +128,6 @@ export class AnimalCreateAdminComponent extends AbstractCreateController<AnimalD
     }
     set createGenderDialog(value: boolean) {
         this.genderService.createDialog= value;
-    }
-    get dataImportExport(): DataImportExportDto {
-        return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports(): Array<DataImportExportDto> {
-        return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-    }
-    get createDataImportExportDialog(): boolean {
-       return this.dataImportExportService.createDialog;
-    }
-    set createDataImportExportDialog(value: boolean) {
-        this.dataImportExportService.createDialog= value;
     }
     get animalType(): AnimalTypeDto {
         return this.animalTypeService.item;
@@ -301,12 +278,6 @@ export class AnimalCreateAdminComponent extends AbstractCreateController<AnimalD
     }
     set validMarketCategoryLibelle(value: boolean) {
         this._validMarketCategoryLibelle = value;
-    }
-    get validDataImportExportCode(): boolean {
-        return this._validDataImportExportCode;
-    }
-    set validDataImportExportCode(value: boolean) {
-        this._validDataImportExportCode = value;
     }
 
 

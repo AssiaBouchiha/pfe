@@ -1,5 +1,4 @@
 import {OrganismCriteria} from './OrganismCriteria.model';
-import {DataImportExportCriteria} from './DataImportExportCriteria.model';
 import {SeroTypeCriteria} from './SeroTypeCriteria.model';
 import {AntibioticCriteria} from './AntibioticCriteria.model';
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
@@ -26,7 +25,5 @@ export class MicrobiologyCriteria  extends   BaseCriteria  {
   public seroTypes: Array<SeroTypeCriteria> ;
   public antibiotic: AntibioticCriteria ;
   public antibiotics: Array<AntibioticCriteria> ;
-  public dataImportExport: DataImportExportCriteria ;
-  public dataImportExports: Array<DataImportExportCriteria> ;
 
 }

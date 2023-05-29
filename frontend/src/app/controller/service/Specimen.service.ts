@@ -13,7 +13,6 @@ import {SpecimenDto} from '../model/Specimen.model';
 import {SpecimenCriteria} from '../criteria/SpecimenCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {ReasonDto} from '../model/Reason.model';
 
 @Injectable({

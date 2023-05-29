@@ -1,5 +1,4 @@
 import {BrandCriteria} from './BrandCriteria.model';
-import {DataImportExportCriteria} from './DataImportExportCriteria.model';
 import {AnimalSpecieCriteria} from './AnimalSpecieCriteria.model';
 import {MarketCategoryCriteria} from './MarketCategoryCriteria.model';
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
@@ -18,7 +17,5 @@ export class FoodCriteria  extends   BaseCriteria  {
   public marketCategorys: Array<MarketCategoryCriteria> ;
   public brand: BrandCriteria ;
   public brands: Array<BrandCriteria> ;
-  public dataImportExport: DataImportExportCriteria ;
-  public dataImportExports: Array<DataImportExportCriteria> ;
 
 }

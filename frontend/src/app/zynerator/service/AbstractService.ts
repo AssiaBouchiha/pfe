@@ -27,6 +27,12 @@ export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends Base
     protected _fileTempDtosForOne: FileTempDto[];
     protected _fileTempDtos: Array<FileTempDto[]>;
 
+    public importExcel(file: File): Observable<Array<DTO>> {
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+        return this.httpClient.post<Array<DTO>>(this.API + "import-excel", formData);
+    }
+
     public initStepper(): void {
         this.index = 0;
         this.back = false;

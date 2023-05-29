@@ -1,4 +1,3 @@
-import {DataImportExportDto} from './DataImportExport.model';
 import {AgeCategoryDto} from './AgeCategory.model';
 import {GenderDto} from './Gender.model';
 import {BaseDto} from 'src/app/zynerator/dto/BaseDto.model';
@@ -16,6 +15,5 @@ export class PlantDto  extends BaseDto{
     public dateofbirthMin: string ;
     public gender: GenderDto ;
     public ageCategory: AgeCategoryDto ;
-    public dataImportExport: DataImportExportDto ;
 
 }

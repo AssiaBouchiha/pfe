@@ -1,5 +1,4 @@
 import {MicrobiologyCriteria} from './MicrobiologyCriteria.model';
-import {LaboratoryAntibioticCriteria} from './LaboratoryAntibioticCriteria.model';
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
 
 
@@ -12,6 +11,5 @@ export class AntibioticCriteria  extends   BaseCriteria  {
     public nomLike: string;
   public microbiology: MicrobiologyCriteria ;
   public microbiologys: Array<MicrobiologyCriteria> ;
-      public laboratoryAntibiotics: Array<LaboratoryAntibioticCriteria>;
 
 }

@@ -8,10 +8,8 @@ import { environment } from 'src/environments/environment';
 import { AnimalSpecieService } from 'src/app/controller/service/AnimalSpecie.service';
 import { MarketCategoryService } from 'src/app/controller/service/MarketCategory.service';
 import { BrandService } from 'src/app/controller/service/Brand.service';
-import { DataImportExportService } from 'src/app/controller/service/DataImportExport.service';
 
 import {BrandDto} from 'src/app/controller/model/Brand.model';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
 import {AnimalSpecieDto} from 'src/app/controller/model/AnimalSpecie.model';
 import {MarketCategoryDto} from 'src/app/controller/model/MarketCategory.model';
 
@@ -27,9 +25,8 @@ export class FoodListAdminComponent extends AbstractListController<FoodDto, Food
     animalSpecies :Array<AnimalSpecieDto>;
     marketCategorys :Array<MarketCategoryDto>;
     brands :Array<BrandDto>;
-    dataImportExports :Array<DataImportExportDto>;
   
-    constructor(foodService: FoodService, private animalSpecieService: AnimalSpecieService, private marketCategoryService: MarketCategoryService, private brandService: BrandService, private dataImportExportService: DataImportExportService) {
+    constructor(foodService: FoodService, private animalSpecieService: AnimalSpecieService, private marketCategoryService: MarketCategoryService, private brandService: BrandService) {
         super(foodService);
     }
 
@@ -40,7 +37,6 @@ export class FoodListAdminComponent extends AbstractListController<FoodDto, Food
       this.loadAnimalSpecie();
       this.loadMarketCategory();
       this.loadBrand();
-      this.loadDataImportExport();
     }
 
     public async loadFoods(){
@@ -58,7 +54,6 @@ export class FoodListAdminComponent extends AbstractListController<FoodDto, Food
             {field: 'libelle', header: 'Libelle'},
             {field: 'marketCategory?.libelle', header: 'Market category'},
             {field: 'brand?.libelle', header: 'Brand'},
-            {field: 'dataImportExport?.code', header: 'Data import export'},
         ];
     }
 
@@ -81,12 +76,6 @@ export class FoodListAdminComponent extends AbstractListController<FoodDto, Food
         isPermistted ? this.brandService.findAllOptimized().subscribe(brands => this.brands = brands,error=>console.log(error))
         : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
     }
-    public async loadDataImportExport(){
-        await this.roleService.findAll();
-        const isPermistted = await this.roleService.isPermitted('Food', 'list');
-        isPermistted ? this.dataImportExportService.findAllOptimized().subscribe(dataImportExports => this.dataImportExports = dataImportExports,error=>console.log(error))
-        : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
-    }
 
 	public initDuplicate(res: FoodDto) {
 	}
@@ -99,7 +88,6 @@ export class FoodListAdminComponent extends AbstractListController<FoodDto, Food
                  'Libelle': e.libelle ,
                 'Market category': e.marketCategory?.libelle ,
                 'Brand': e.brand?.libelle ,
-                'Data import export': e.dataImportExport?.code ,
             }
         });
 
@@ -109,7 +97,6 @@ export class FoodListAdminComponent extends AbstractListController<FoodDto, Food
             'Libelle': this.criteria.libelle ? this.criteria.libelle : environment.emptyForExport ,
         //'Market category': this.criteria.marketCategory?.libelle ? this.criteria.marketCategory?.libelle : environment.emptyForExport ,
         //'Brand': this.criteria.brand?.libelle ? this.criteria.brand?.libelle : environment.emptyForExport ,
-        //'Data import export': this.criteria.dataImportExport?.code ? this.criteria.dataImportExport?.code : environment.emptyForExport ,
         }];
       }
 }

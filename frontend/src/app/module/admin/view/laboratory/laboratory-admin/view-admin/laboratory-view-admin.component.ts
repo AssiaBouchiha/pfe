@@ -8,24 +8,20 @@ import {LaboratoryService} from 'src/app/controller/service/Laboratory.service';
 import {LaboratoryDto} from 'src/app/controller/model/Laboratory.model';
 import {LaboratoryCriteria} from 'src/app/controller/criteria/LaboratoryCriteria.model';
 
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
+import {LocationDto} from 'src/app/controller/model/Location.model';
+import {LocationService} from 'src/app/controller/service/Location.service';
+import {NotificationDto} from 'src/app/controller/model/Notification.model';
+import {NotificationService} from 'src/app/controller/service/Notification.service';
+import {AlertDto} from 'src/app/controller/model/Alert.model';
+import {AlertService} from 'src/app/controller/service/Alert.service';
+import {DataArchiveDto} from 'src/app/controller/model/DataArchive.model';
+import {DataArchiveService} from 'src/app/controller/service/DataArchive.service';
 import {LaboratoryAntibioticDto} from 'src/app/controller/model/LaboratoryAntibiotic.model';
 import {LaboratoryAntibioticService} from 'src/app/controller/service/LaboratoryAntibiotic.service';
 import {DataAnalysisDto} from 'src/app/controller/model/DataAnalysis.model';
 import {DataAnalysisService} from 'src/app/controller/service/DataAnalysis.service';
-import {MicrobiologyDto} from 'src/app/controller/model/Microbiology.model';
-import {MicrobiologyService} from 'src/app/controller/service/Microbiology.service';
 import {ReportDto} from 'src/app/controller/model/Report.model';
 import {ReportService} from 'src/app/controller/service/Report.service';
-import {AlertDto} from 'src/app/controller/model/Alert.model';
-import {AlertService} from 'src/app/controller/service/Alert.service';
-import {NotificationDto} from 'src/app/controller/model/Notification.model';
-import {NotificationService} from 'src/app/controller/service/Notification.service';
-import {LocationDto} from 'src/app/controller/model/Location.model';
-import {LocationService} from 'src/app/controller/service/Location.service';
-import {DataArchiveDto} from 'src/app/controller/model/DataArchive.model';
-import {DataArchiveService} from 'src/app/controller/service/DataArchive.service';
 import {AntibioticDto} from 'src/app/controller/model/Antibiotic.model';
 import {AntibioticService} from 'src/app/controller/service/Antibiotic.service';
 @Component({
@@ -34,79 +30,65 @@ import {AntibioticService} from 'src/app/controller/service/Antibiotic.service';
 })
 export class LaboratoryViewAdminComponent extends AbstractViewController<LaboratoryDto, LaboratoryCriteria, LaboratoryService> implements OnInit {
 
-    antibiotic = new AntibioticDto();
-    antibiotics: Array<AntibioticDto> = [];
+    laboratoryAntibiotics = new LaboratoryAntibioticDto();
+    laboratoryAntibioticss: Array<LaboratoryAntibioticDto> = [];
     alerts = new AlertDto();
     alertss: Array<AlertDto> = [];
     notifications = new NotificationDto();
     notificationss: Array<NotificationDto> = [];
 
-    constructor(private laboratoryService: LaboratoryService, private microbiologyService: MicrobiologyService, private reportService: ReportService, private alertService: AlertService, private laboratoryService: LaboratoryService, private dataImportExportService: DataImportExportService, private notificationService: NotificationService, private locationService: LocationService, private dataArchiveService: DataArchiveService, private dataAnalysisService: DataAnalysisService, private antibioticService: AntibioticService){
+    constructor(private laboratoryService: LaboratoryService, private alertService: AlertService, private dataArchiveService: DataArchiveService, private laboratoryAntibioticService: LaboratoryAntibioticService, private locationService: LocationService, private dataAnalysisService: DataAnalysisService, private notificationService: NotificationService, private reportService: ReportService, private antibioticService: AntibioticService){
         super(laboratoryService);
     }
 
     ngOnInit(): void {
-        this.antibiotic.microbiology = new MicrobiologyDto();
-        this.microbiologyService.findAll().subscribe((data) => this.microbiologys = data);
+        this.laboratoryAntibiotics.antibiotic = new AntibioticDto();
+        this.antibioticService.findAll().subscribe((data) => this.antibiotics = data);
         this.location = new LocationDto();
         this.locationService.findAll().subscribe((data) => this.locations = data);
-        this.dataImportExport = new DataImportExportDto();
-        this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
-        this.dataanalysis = new DataanalysisDto();
-        this.dataanalysisService.findAll().subscribe((data) => this.dataanalysiss = data);
-        this.dataarchive = new DataarchiveDto();
-        this.dataarchiveService.findAll().subscribe((data) => this.dataarchives = data);
+        this.dataAnalysis = new DataAnalysisDto();
+        this.dataAnalysisService.findAll().subscribe((data) => this.dataAnalysiss = data);
+        this.dataArchive = new DataArchiveDto();
+        this.dataArchiveService.findAll().subscribe((data) => this.dataArchives = data);
         this.report = new ReportDto();
         this.reportService.findAll().subscribe((data) => this.reports = data);
     }
 
 
-    get dataanalysis(): DataAnalysisDto {
+    get antibiotic(): AntibioticDto {
+       return this.antibioticService.item;
+    }
+    set antibiotic(value: AntibioticDto) {
+        this.antibioticService.item = value;
+    }
+    get antibiotics():Array<AntibioticDto> {
+       return this.antibioticService.items;
+    }
+    set antibiotics(value: Array<AntibioticDto>) {
+        this.antibioticService.items = value;
+    }
+    get dataAnalysis(): DataAnalysisDto {
        return this.dataAnalysisService.item;
     }
-    set dataanalysis(value: DataAnalysisDto) {
+    set dataAnalysis(value: DataAnalysisDto) {
         this.dataAnalysisService.item = value;
     }
-    get dataanalysiss():Array<DataAnalysisDto> {
+    get dataAnalysiss():Array<DataAnalysisDto> {
        return this.dataAnalysisService.items;
     }
-    set dataanalysiss(value: Array<DataAnalysisDto>) {
+    set dataAnalysiss(value: Array<DataAnalysisDto>) {
         this.dataAnalysisService.items = value;
     }
-    get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports():Array<DataImportExportDto> {
-       return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-    }
-    get microbiology(): MicrobiologyDto {
-       return this.microbiologyService.item;
-    }
-    set microbiology(value: MicrobiologyDto) {
-        this.microbiologyService.item = value;
-    }
-    get microbiologys():Array<MicrobiologyDto> {
-       return this.microbiologyService.items;
-    }
-    set microbiologys(value: Array<MicrobiologyDto>) {
-        this.microbiologyService.items = value;
-    }
-    get dataarchive(): DataArchiveDto {
+    get dataArchive(): DataArchiveDto {
        return this.dataArchiveService.item;
     }
-    set dataarchive(value: DataArchiveDto) {
+    set dataArchive(value: DataArchiveDto) {
         this.dataArchiveService.item = value;
     }
-    get dataarchives():Array<DataArchiveDto> {
+    get dataArchives():Array<DataArchiveDto> {
        return this.dataArchiveService.items;
     }
-    set dataarchives(value: Array<DataArchiveDto>) {
+    set dataArchives(value: Array<DataArchiveDto>) {
         this.dataArchiveService.items = value;
     }
     get location(): LocationDto {

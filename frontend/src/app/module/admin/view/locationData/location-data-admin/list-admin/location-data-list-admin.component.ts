@@ -8,10 +8,8 @@ import { environment } from 'src/environments/environment';
 import { InstitutionService } from 'src/app/controller/service/Institution.service';
 import { DepartmentService } from 'src/app/controller/service/Department.service';
 import { LocationTypeService } from 'src/app/controller/service/LocationType.service';
-import { DataImportExportService } from 'src/app/controller/service/DataImportExport.service';
 
 import {DepartmentDto} from 'src/app/controller/model/Department.model';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
 import {InstitutionDto} from 'src/app/controller/model/Institution.model';
 import {LocationTypeDto} from 'src/app/controller/model/LocationType.model';
 
@@ -27,9 +25,8 @@ export class LocationDataListAdminComponent extends AbstractListController<Locat
     institutions :Array<InstitutionDto>;
     departments :Array<DepartmentDto>;
     locationTypes :Array<LocationTypeDto>;
-    dataImportExports :Array<DataImportExportDto>;
   
-    constructor(locationDataService: LocationDataService, private institutionService: InstitutionService, private departmentService: DepartmentService, private locationTypeService: LocationTypeService, private dataImportExportService: DataImportExportService) {
+    constructor(locationDataService: LocationDataService, private institutionService: InstitutionService, private departmentService: DepartmentService, private locationTypeService: LocationTypeService) {
         super(locationDataService);
     }
 
@@ -40,7 +37,6 @@ export class LocationDataListAdminComponent extends AbstractListController<Locat
       this.loadInstitution();
       this.loadDepartment();
       this.loadLocationType();
-      this.loadDataImportExport();
     }
 
     public async loadLocationDatas(){
@@ -59,7 +55,6 @@ export class LocationDataListAdminComponent extends AbstractListController<Locat
             {field: 'institution?.libelle', header: 'Institution'},
             {field: 'department?.libelle', header: 'Department'},
             {field: 'locationType?.libelle', header: 'Location type'},
-            {field: 'dataImportExport?.code', header: 'Data import export'},
         ];
     }
 
@@ -82,12 +77,6 @@ export class LocationDataListAdminComponent extends AbstractListController<Locat
         isPermistted ? this.locationTypeService.findAllOptimized().subscribe(locationTypes => this.locationTypes = locationTypes,error=>console.log(error))
         : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
     }
-    public async loadDataImportExport(){
-        await this.roleService.findAll();
-        const isPermistted = await this.roleService.isPermitted('LocationData', 'list');
-        isPermistted ? this.dataImportExportService.findAllOptimized().subscribe(dataImportExports => this.dataImportExports = dataImportExports,error=>console.log(error))
-        : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
-    }
 
 	public initDuplicate(res: LocationDataDto) {
 	}
@@ -101,7 +90,6 @@ export class LocationDataListAdminComponent extends AbstractListController<Locat
                 'Institution': e.institution?.libelle ,
                 'Department': e.department?.libelle ,
                 'Location type': e.locationType?.libelle ,
-                'Data import export': e.dataImportExport?.code ,
             }
         });
 
@@ -113,7 +101,6 @@ export class LocationDataListAdminComponent extends AbstractListController<Locat
         //'Institution': this.criteria.institution?.libelle ? this.criteria.institution?.libelle : environment.emptyForExport ,
         //'Department': this.criteria.department?.libelle ? this.criteria.department?.libelle : environment.emptyForExport ,
         //'Location type': this.criteria.locationType?.libelle ? this.criteria.locationType?.libelle : environment.emptyForExport ,
-        //'Data import export': this.criteria.dataImportExport?.code ? this.criteria.dataImportExport?.code : environment.emptyForExport ,
         }];
       }
 }

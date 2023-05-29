@@ -14,7 +14,6 @@ import {LocationDataCriteria} from '../criteria/LocationDataCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
 import {DepartmentDto} from '../model/Department.model';
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {InstitutionDto} from '../model/Institution.model';
 import {LocationTypeDto} from '../model/LocationType.model';
 

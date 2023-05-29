@@ -47,104 +47,55 @@
                                             
                                         </div>
 
-                                    <div class="field col-11 md:col-3">
-                                            <label for="7">{{'laboratoryDataImportExport' | translate}}</label>
-                                            <p-dropdown   appendTo="body" [options]="dataImportExports" [(ngModel)]="item.dataImportExport" id="7"[filter]="true" filterMatchMode="contains"
-                                                    [showClear]="true" optionLabel="code" placeholder="{{'laboratoryDataImportExport' | translate}}"  >
-                                            </p-dropdown>
-                                            
-                                        </div>
-
 
 
                                     <div class="field col-11 md:col-3">
-                                            <label for="10">{{'laboratoryDataanalysis' | translate}}</label>
-                                            <p-dropdown   appendTo="body" [options]="dataanalysiss" [(ngModel)]="item.dataanalysis" id="10"[filter]="true" filterMatchMode="contains"
-                                                    [showClear]="true" optionLabel="code" placeholder="{{'laboratoryDataanalysis' | translate}}"  >
+                                            <label for="9">{{'laboratoryDataAnalysis' | translate}}</label>
+                                            <p-dropdown   appendTo="body" [options]="dataAnalysiss" [(ngModel)]="item.dataAnalysis" id="9"[filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true" optionLabel="code" placeholder="{{'laboratoryDataAnalysis' | translate}}"  >
                                             </p-dropdown>
                                             
                                         </div>
 
                                     <div class="field col-11 md:col-3">
-                                            <label for="11">{{'laboratoryDataarchive' | translate}}</label>
-                                            <p-dropdown   appendTo="body" [options]="dataarchives" [(ngModel)]="item.dataarchive" id="11"[filter]="true" filterMatchMode="contains"
-                                                    [showClear]="true" optionLabel="code" placeholder="{{'laboratoryDataarchive' | translate}}"  >
+                                            <label for="10">{{'laboratoryDataArchive' | translate}}</label>
+                                            <p-dropdown   appendTo="body" [options]="dataArchives" [(ngModel)]="item.dataArchive" id="10"[filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true" optionLabel="code" placeholder="{{'laboratoryDataArchive' | translate}}"  >
                                             </p-dropdown>
                                             
                                         </div>
 
                                     <div class="field col-11 md:col-3">
-                                            <label for="12">{{'laboratoryReport' | translate}}</label>
-                                            <p-dropdown   appendTo="body" [options]="reports" [(ngModel)]="item.report" id="12"[filter]="true" filterMatchMode="contains"
+                                            <label for="11">{{'laboratoryReport' | translate}}</label>
+                                            <p-dropdown   appendTo="body" [options]="reports" [(ngModel)]="item.report" id="11"[filter]="true" filterMatchMode="contains"
                                                     [showClear]="true" optionLabel="code" placeholder="{{'laboratoryReport' | translate}}"  >
                                             </p-dropdown>
                                             
                                         </div>
                         </div>
                     </p-tabPanel>
-
-                            <p-tabPanel header="laboratoryAntibiotic">
-                                <p-tabView [(activeIndex)]="activeTab">
-                                    <p-tabPanel header="Création">
-                                        <div class="grid">
-                                                            <div class="field col-12 md:col-4">
-                                                                <label for="1">Code<span style="color: red;">*</span></label>
-                                                                <input appendTo="body" class="mb-2 mr-2" type="text" pInputText placeholder="Code"
-                                                                       id="1" [(ngModel)]="antibioticElement.code"
-                                                                       autofocus  [ngClass]="{'ng-invalid ng-dirty' : !validAntibioticCode}"  >
-                                                                <small class='p-error' *ngIf='!validAntibioticCode'>Code est obligatoire.</small>
-                                                            </div>
-                                                            <div class="field col-12 md:col-4">
-                                                                <label for="2">Nom</label>
-                                                                <input appendTo="body" class="mb-2 mr-2" type="text" pInputText placeholder="Nom"
-                                                                       id="2" [(ngModel)]="antibioticElement.nom"
-                                                                       autofocus   >
-                                                                
-                                                            </div>
-                                                            <div class="field col-11 md:col-3">
-                                                                <label>Microbiology</label>
-                                                                <p-dropdown appendTo="body" [options]="microbiologys" [(ngModel)]="antibioticElement.microbiology"
-                                                                        id="3"  [filter]="true" filterMatchMode="contains" [showClear]="true"
-                                                                        optionLabel="code" placeholder="Microbiology"  >
-                                                                </p-dropdown>
-                                                                
-                                                            </div>
-                                                            <div class="field col-12  md:col-4">
-                                                                <label>Laboratory</label>
-                                                                <p-multiSelect  appendTo="body" [options]="laboratoryAntibiotics" [(ngModel)]="antibioticElement.laboratoryAntibiotics" defaultLabel="Selectionner un Laboratory" optionLabel="laboratory.code"  display="chip"></p-multiSelect>
-                                                            </div>
-                                                <div class="field col-12 md:col-1">
-                                                    <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addAntibiotic()"></button>
-                                                </div>
+                            <p-tabPanel header="antibiotic">
+                                <div class="grid">
+                                    <div class="col">
+                                        <div class="card">
+                                            <p-table [value]="laboratoryAntibiotics" [(selection)]="item.laboratoryAntibiotics" dataKey="antibiotic.code" [scrollable]="true" scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                        <th>Antibiotic</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                        <td><p-tableCheckbox [value]="p" ></p-tableCheckbox></td>
+                                                        <td>{{p.antibiotic?.code}}</td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
                                         </div>
-                                    </p-tabPanel>
-                                    <p-tabPanel header="Liste {{item.antibiotic?.length > 0 ? '(' + item.antibiotic?.length + ')' : ''}}">
-                                            <div class="card">
-                                                <p-table [value]="item.antibiotic" [scrollable]="true" scrollHeight="200px">
-                                                    <ng-template pTemplate="header">
-                                                        <tr>
-                                                                        <th>Code</th>
-                                                                        <th>Nom</th>
-                                                                        <th>Microbiology</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </ng-template>
-                                                    <ng-template pTemplate="body" let-p>
-                                                        <tr>
-                                                                        <td>{{p.code}}</td>
-                                                                        <td>{{p.nom}}</td>
-                                                                    <td>{{p.microbiology?.code}}</td>
-                                                            <td>
-                                                                <button (click)="deleteAntibiotic(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
-                                                                <button (click)="editAntibiotic(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                                            </td>
-                                                        </tr>
-                                                    </ng-template>
-                                                </p-table>
-                                            </div>
-                                    </p-tabPanel>
-                                </p-tabView>
+                                    </div>
+                                </div>
                             </p-tabPanel>
+
                             <p-tabPanel header="laboratoryAlerts">
                                 <p-tabView [(activeIndex)]="activeTab">
                                     <p-tabPanel header="Création">

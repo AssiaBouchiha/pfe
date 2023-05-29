@@ -1,7 +1,6 @@
-import {DataImportExportDto} from './DataImportExport.model';
 import {DataAnalysisDto} from './DataAnalysis.model';
 import {ReportDto} from './Report.model';
-import {AntibioticDto} from './Antibiotic.model';
+import {LaboratoryAntibioticDto} from './LaboratoryAntibiotic.model';
 import {AlertDto} from './Alert.model';
 import {LocationDto} from './Location.model';
 import {DataArchiveDto} from './DataArchive.model';
@@ -17,11 +16,10 @@ export class LaboratoryDto  extends BaseDto{
    public bloqued: null | boolean;
     public city: string;
     public location: LocationDto ;
-    public dataImportExport: DataImportExportDto ;
-    public dataanalysis: DataAnalysisDto ;
-    public dataarchive: DataArchiveDto ;
+    public dataAnalysis: DataAnalysisDto ;
+    public dataArchive: DataArchiveDto ;
     public report: ReportDto ;
-     public antibiotic: Array<AntibioticDto>;
+     public laboratoryAntibiotics: Array<LaboratoryAntibioticDto>;
      public alerts: Array<AlertDto>;
      public notifications: Array<NotificationDto>;
 

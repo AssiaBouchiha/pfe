@@ -12,8 +12,6 @@ import {BrandDto} from 'src/app/controller/model/Brand.model';
 import {BrandService} from 'src/app/controller/service/Brand.service';
 import {MarketCategoryDto} from 'src/app/controller/model/MarketCategory.model';
 import {MarketCategoryService} from 'src/app/controller/service/MarketCategory.service';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
 import {AnimalSpecieDto} from 'src/app/controller/model/AnimalSpecie.model';
 import {AnimalSpecieService} from 'src/app/controller/service/AnimalSpecie.service';
 @Component({
@@ -23,7 +21,7 @@ import {AnimalSpecieService} from 'src/app/controller/service/AnimalSpecie.servi
 export class FoodViewAdminComponent extends AbstractViewController<FoodDto, FoodCriteria, FoodService> implements OnInit {
 
 
-    constructor(private foodService: FoodService, private brandService: BrandService, private marketCategoryService: MarketCategoryService, private dataImportExportService: DataImportExportService, private animalSpecieService: AnimalSpecieService){
+    constructor(private foodService: FoodService, private brandService: BrandService, private marketCategoryService: MarketCategoryService, private animalSpecieService: AnimalSpecieService){
         super(foodService);
     }
 
@@ -34,23 +32,9 @@ export class FoodViewAdminComponent extends AbstractViewController<FoodDto, Food
         this.marketCategoryService.findAll().subscribe((data) => this.marketCategorys = data);
         this.brand = new BrandDto();
         this.brandService.findAll().subscribe((data) => this.brands = data);
-        this.dataImportExport = new DataImportExportDto();
-        this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
     }
 
 
-    get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports():Array<DataImportExportDto> {
-       return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-    }
     get brand(): BrandDto {
        return this.brandService.item;
     }

@@ -1,7 +1,7 @@
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
 
 
-export class SerotypeCriteria  extends   BaseCriteria  {
+export class SeroTypeCriteria  extends   BaseCriteria  {
 
     public id: number;
     public code: string;

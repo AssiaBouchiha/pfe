@@ -14,7 +14,6 @@ import {MicrobiologyCriteria} from '../criteria/MicrobiologyCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
 import {OrganismDto} from '../model/Organism.model';
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {SeroTypeDto} from '../model/SeroType.model';
 import {AntibioticDto} from '../model/Antibiotic.model';
 

@@ -6,9 +6,7 @@ import {AbstractListController} from 'src/app/zynerator/controller/AbstractListC
 import { environment } from 'src/environments/environment';
 
 import { ReasonService } from 'src/app/controller/service/Reason.service';
-import { DataImportExportService } from 'src/app/controller/service/DataImportExport.service';
 
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
 import {ReasonDto} from 'src/app/controller/model/Reason.model';
 
 
@@ -21,9 +19,8 @@ export class SpecimenListAdminComponent extends AbstractListController<SpecimenD
     fileName = 'Specimen';
 
     reasons :Array<ReasonDto>;
-    dataImportExports :Array<DataImportExportDto>;
   
-    constructor(specimenService: SpecimenService, private reasonService: ReasonService, private dataImportExportService: DataImportExportService) {
+    constructor(specimenService: SpecimenService, private reasonService: ReasonService) {
         super(specimenService);
     }
 
@@ -32,7 +29,6 @@ export class SpecimenListAdminComponent extends AbstractListController<SpecimenD
       this.initExport();
       this.initCol();
       this.loadReason();
-      this.loadDataImportExport();
     }
 
     public async loadSpecimens(){
@@ -49,7 +45,6 @@ export class SpecimenListAdminComponent extends AbstractListController<SpecimenD
             {field: 'date', header: 'Date'},
             {field: 'type', header: 'Type'},
             {field: 'reason?.libelle', header: 'Reason'},
-            {field: 'dataImportExport?.code', header: 'Data import export'},
         ];
     }
 
@@ -58,12 +53,6 @@ export class SpecimenListAdminComponent extends AbstractListController<SpecimenD
         await this.roleService.findAll();
         const isPermistted = await this.roleService.isPermitted('Specimen', 'list');
         isPermistted ? this.reasonService.findAllOptimized().subscribe(reasons => this.reasons = reasons,error=>console.log(error))
-        : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
-    }
-    public async loadDataImportExport(){
-        await this.roleService.findAll();
-        const isPermistted = await this.roleService.isPermitted('Specimen', 'list');
-        isPermistted ? this.dataImportExportService.findAllOptimized().subscribe(dataImportExports => this.dataImportExports = dataImportExports,error=>console.log(error))
         : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
     }
 
@@ -77,7 +66,6 @@ export class SpecimenListAdminComponent extends AbstractListController<SpecimenD
                 'Date': this.datePipe.transform(e.date , 'dd/MM/yyyy hh:mm'),
                  'Type': e.type ,
                 'Reason': e.reason?.libelle ,
-                'Data import export': e.dataImportExport?.code ,
             }
         });
 
@@ -87,7 +75,6 @@ export class SpecimenListAdminComponent extends AbstractListController<SpecimenD
             'Date Max': this.criteria.dateTo ? this.datePipe.transform(this.criteria.dateTo , this.dateFormat) : environment.emptyForExport ,
             'Type': this.criteria.type ? this.criteria.type : environment.emptyForExport ,
         //'Reason': this.criteria.reason?.libelle ? this.criteria.reason?.libelle : environment.emptyForExport ,
-        //'Data import export': this.criteria.dataImportExport?.code ? this.criteria.dataImportExport?.code : environment.emptyForExport ,
         }];
       }
 }

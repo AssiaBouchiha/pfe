@@ -46,18 +46,12 @@ import { PatientAdminModule } from './view/patient/patient-admin.module';
 import { PatientAdminRoutingModule } from './view/patient/patient-admin-routing.module';
 import { SpecimenAdminModule } from './view/specimen/specimen-admin.module';
 import { SpecimenAdminRoutingModule } from './view/specimen/specimen-admin-routing.module';
-import { DataImportexportAdminModule } from './view/dataImportexport/dataImportexport-admin.module';
-import { DataImportexportAdminRoutingModule } from './view/dataImportexport/dataImportexport-admin-routing.module';
 import { LocationAdminModule } from './view/location/location-admin.module';
 import { LocationAdminRoutingModule } from './view/location/location-admin-routing.module';
-import { DataImportExportAdminModule } from './view/dataImportExport/dataImportExport-admin.module';
-import { DataImportExportAdminRoutingModule } from './view/dataImportExport/dataImportExport-admin-routing.module';
 import { AnimalAdminModule } from './view/animal/animal-admin.module';
 import { AnimalAdminRoutingModule } from './view/animal/animal-admin-routing.module';
 import { ConfigAdminModule } from './view/config/config-admin.module';
 import { ConfigAdminRoutingModule } from './view/config/config-admin-routing.module';
-import { SerotypeAdminModule } from './view/serotype/serotype-admin.module';
-import { SerotypeAdminRoutingModule } from './view/serotype/serotype-admin-routing.module';
 
 
 import { PasswordModule } from 'primeng/password';
@@ -130,18 +124,12 @@ import {MessagesModule} from 'primeng/messages';
   PatientAdminRoutingModule,
   SpecimenAdminModule,
   SpecimenAdminRoutingModule,
-  DataImportexportAdminModule,
-  DataImportexportAdminRoutingModule,
   LocationAdminModule,
   LocationAdminRoutingModule,
-  DataImportExportAdminModule,
-  DataImportExportAdminRoutingModule,
   AnimalAdminModule,
   AnimalAdminRoutingModule,
   ConfigAdminModule,
   ConfigAdminRoutingModule,
-  SerotypeAdminModule,
-  SerotypeAdminRoutingModule,
   ],
   exports: [
   LoginAdminComponent,
@@ -161,12 +149,9 @@ import {MessagesModule} from 'primeng/messages';
     PlantAdminModule,
     PatientAdminModule,
     SpecimenAdminModule,
-    DataImportexportAdminModule,
     LocationAdminModule,
-    DataImportExportAdminModule,
     AnimalAdminModule,
     ConfigAdminModule,
-    SerotypeAdminModule,
   ],
   entryComponents: [],
 })

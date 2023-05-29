@@ -13,10 +13,9 @@ import {LaboratoryDto} from '../model/Laboratory.model';
 import {LaboratoryCriteria} from '../criteria/LaboratoryCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {DataAnalysisDto} from '../model/DataAnalysis.model';
 import {ReportDto} from '../model/Report.model';
-import {AntibioticDto} from '../model/Antibiotic.model';
+import {LaboratoryAntibioticDto} from '../model/LaboratoryAntibiotic.model';
 import {AlertDto} from '../model/Alert.model';
 import {LocationDto} from '../model/Location.model';
 import {DataArchiveDto} from '../model/DataArchive.model';

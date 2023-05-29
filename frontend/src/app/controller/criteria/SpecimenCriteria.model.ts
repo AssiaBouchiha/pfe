@@ -1,4 +1,3 @@
-import {DataImportExportCriteria} from './DataImportExportCriteria.model';
 import {ReasonCriteria} from './ReasonCriteria.model';
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
 
@@ -15,7 +14,5 @@ export class SpecimenCriteria  extends   BaseCriteria  {
     public typeLike: string;
   public reason: ReasonCriteria ;
   public reasons: Array<ReasonCriteria> ;
-  public dataImportExport: DataImportExportCriteria ;
-  public dataImportExports: Array<DataImportExportCriteria> ;
 
 }

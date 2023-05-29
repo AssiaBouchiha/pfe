@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 import { MicrobiologyService } from 'src/app/controller/service/Microbiology.service';
 
 import {MicrobiologyDto} from 'src/app/controller/model/Microbiology.model';
-import {LaboratoryAntibioticDto} from 'src/app/controller/model/LaboratoryAntibiotic.model';
 
 
 @Component({
@@ -57,9 +56,6 @@ export class AntibioticListAdminComponent extends AbstractListController<Antibio
     }
 
 	public initDuplicate(res: AntibioticDto) {
-        if (res.laboratoryAntibiotics != null) {
-             res.laboratoryAntibiotics.forEach(d => { d.antibiotic = null; d.id = null; });
-        }
 	}
 
    public prepareColumnExport() : void {

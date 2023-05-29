@@ -14,7 +14,6 @@ import {FoodCriteria} from '../criteria/FoodCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
 import {BrandDto} from '../model/Brand.model';
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {AnimalSpecieDto} from '../model/AnimalSpecie.model';
 import {MarketCategoryDto} from '../model/MarketCategory.model';
 

@@ -8,18 +8,16 @@ import {AnimalService} from 'src/app/controller/service/Animal.service';
 import {AnimalDto} from 'src/app/controller/model/Animal.model';
 import {AnimalCriteria} from 'src/app/controller/criteria/AnimalCriteria.model';
 
-import {AnimalTypeDto} from 'src/app/controller/model/AnimalType.model';
-import {AnimalTypeService} from 'src/app/controller/service/AnimalType.service';
-import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
-import {AgeCategoryService} from 'src/app/controller/service/AgeCategory.service';
-import {MarketCategoryDto} from 'src/app/controller/model/MarketCategory.model';
-import {MarketCategoryService} from 'src/app/controller/service/MarketCategory.service';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
 import {GenderDto} from 'src/app/controller/model/Gender.model';
 import {GenderService} from 'src/app/controller/service/Gender.service';
+import {AnimalTypeDto} from 'src/app/controller/model/AnimalType.model';
+import {AnimalTypeService} from 'src/app/controller/service/AnimalType.service';
+import {MarketCategoryDto} from 'src/app/controller/model/MarketCategory.model';
+import {MarketCategoryService} from 'src/app/controller/service/MarketCategory.service';
 import {AnimalSpecieDto} from 'src/app/controller/model/AnimalSpecie.model';
 import {AnimalSpecieService} from 'src/app/controller/service/AnimalSpecie.service';
+import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
+import {AgeCategoryService} from 'src/app/controller/service/AgeCategory.service';
 @Component({
   selector: 'app-animal-view-admin',
   templateUrl: './animal-view-admin.component.html'
@@ -27,7 +25,7 @@ import {AnimalSpecieService} from 'src/app/controller/service/AnimalSpecie.servi
 export class AnimalViewAdminComponent extends AbstractViewController<AnimalDto, AnimalCriteria, AnimalService> implements OnInit {
 
 
-    constructor(private animalService: AnimalService, private animalTypeService: AnimalTypeService, private ageCategoryService: AgeCategoryService, private marketCategoryService: MarketCategoryService, private dataImportExportService: DataImportExportService, private genderService: GenderService, private animalSpecieService: AnimalSpecieService){
+    constructor(private animalService: AnimalService, private genderService: GenderService, private animalTypeService: AnimalTypeService, private marketCategoryService: MarketCategoryService, private animalSpecieService: AnimalSpecieService, private ageCategoryService: AgeCategoryService){
         super(animalService);
     }
 
@@ -42,8 +40,6 @@ export class AnimalViewAdminComponent extends AbstractViewController<AnimalDto, 
         this.animalTypeService.findAll().subscribe((data) => this.animalTypes = data);
         this.marketCategory = new MarketCategoryDto();
         this.marketCategoryService.findAll().subscribe((data) => this.marketCategorys = data);
-        this.dataImportExport = new DataImportExportDto();
-        this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
     }
 
 
@@ -58,18 +54,6 @@ export class AnimalViewAdminComponent extends AbstractViewController<AnimalDto, 
     }
     set genders(value: Array<GenderDto>) {
         this.genderService.items = value;
-    }
-    get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports():Array<DataImportExportDto> {
-       return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
     }
     get animalType(): AnimalTypeDto {
        return this.animalTypeService.item;

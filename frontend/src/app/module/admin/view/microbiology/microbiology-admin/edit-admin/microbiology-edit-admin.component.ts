@@ -10,12 +10,10 @@ import {MicrobiologyCriteria} from 'src/app/controller/criteria/MicrobiologyCrit
 
 import {SeroTypeDto} from 'src/app/controller/model/SeroType.model';
 import {SeroTypeService} from 'src/app/controller/service/SeroType.service';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
-import {AntibioticDto} from 'src/app/controller/model/Antibiotic.model';
-import {AntibioticService} from 'src/app/controller/service/Antibiotic.service';
 import {OrganismDto} from 'src/app/controller/model/Organism.model';
 import {OrganismService} from 'src/app/controller/service/Organism.service';
+import {AntibioticDto} from 'src/app/controller/model/Antibiotic.model';
+import {AntibioticService} from 'src/app/controller/service/Antibiotic.service';
 
 @Component({
   selector: 'app-microbiology-edit-admin',
@@ -31,11 +29,10 @@ export class MicrobiologyEditAdminComponent extends AbstractEditController<Micro
     private _validSeroTypeCode = true;
     private _validSeroTypeLibelle = true;
     private _validAntibioticCode = true;
-    private _validDataImportExportCode = true;
 
 
 
-    constructor( private microbiologyService: MicrobiologyService , private seroTypeService: SeroTypeService, private dataImportExportService: DataImportExportService, private antibioticService: AntibioticService, private organismService: OrganismService) {
+    constructor( private microbiologyService: MicrobiologyService , private seroTypeService: SeroTypeService, private organismService: OrganismService, private antibioticService: AntibioticService) {
         super(microbiologyService);
     }
 
@@ -46,8 +43,6 @@ export class MicrobiologyEditAdminComponent extends AbstractEditController<Micro
     this.seroTypeService.findAll().subscribe((data) => this.seroTypes = data);
     this.antibiotic = new AntibioticDto();
     this.antibioticService.findAll().subscribe((data) => this.antibiotics = data);
-    this.dataImportExport = new DataImportExportDto();
-    this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
 }
 
 
@@ -106,24 +101,6 @@ export class MicrobiologyEditAdminComponent extends AbstractEditController<Micro
   set createAntibioticDialog(value: boolean) {
        this.antibioticService.createDialog= value;
    }
-   get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-   }
-  set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-   }
-   get dataImportExports(): Array<DataImportExportDto> {
-        return this.dataImportExportService.items;
-   }
-   set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-   }
-   get createDataImportExportDialog(): boolean {
-       return this.dataImportExportService.createDialog;
-   }
-  set createDataImportExportDialog(value: boolean) {
-       this.dataImportExportService.createDialog= value;
-   }
    get organism(): OrganismDto {
        return this.organismService.item;
    }
@@ -180,11 +157,5 @@ export class MicrobiologyEditAdminComponent extends AbstractEditController<Micro
     }
     set validAntibioticCode(value: boolean) {
         this._validAntibioticCode = value;
-    }
-    get validDataImportExportCode(): boolean {
-        return this._validDataImportExportCode;
-    }
-    set validDataImportExportCode(value: boolean) {
-        this._validDataImportExportCode = value;
     }
 }

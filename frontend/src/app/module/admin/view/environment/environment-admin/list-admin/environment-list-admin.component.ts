@@ -7,9 +7,7 @@ import { environment } from 'src/environments/environment';
 
 import { GenderService } from 'src/app/controller/service/Gender.service';
 import { AgeCategoryService } from 'src/app/controller/service/AgeCategory.service';
-import { DataImportExportService } from 'src/app/controller/service/DataImportExport.service';
 
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
 import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
 import {GenderDto} from 'src/app/controller/model/Gender.model';
 
@@ -24,9 +22,8 @@ export class EnvironmentListAdminComponent extends AbstractListController<Enviro
 
     genders :Array<GenderDto>;
     ageCategorys :Array<AgeCategoryDto>;
-    dataImportExports :Array<DataImportExportDto>;
   
-    constructor(environmentService: EnvironmentService, private genderService: GenderService, private ageCategoryService: AgeCategoryService, private dataImportExportService: DataImportExportService) {
+    constructor(environmentService: EnvironmentService, private genderService: GenderService, private ageCategoryService: AgeCategoryService) {
         super(environmentService);
     }
 
@@ -36,7 +33,6 @@ export class EnvironmentListAdminComponent extends AbstractListController<Enviro
       this.initCol();
       this.loadGender();
       this.loadAgeCategory();
-      this.loadDataImportExport();
     }
 
     public async loadEnvironments(){
@@ -56,7 +52,6 @@ export class EnvironmentListAdminComponent extends AbstractListController<Enviro
             {field: 'dateofbirth', header: 'Dateofbirth'},
             {field: 'age', header: 'Age'},
             {field: 'ageCategory?.libelle', header: 'Age category'},
-            {field: 'dataImportExport?.code', header: 'Data import export'},
         ];
     }
 
@@ -73,12 +68,6 @@ export class EnvironmentListAdminComponent extends AbstractListController<Enviro
         isPermistted ? this.ageCategoryService.findAllOptimized().subscribe(ageCategorys => this.ageCategorys = ageCategorys,error=>console.log(error))
         : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
     }
-    public async loadDataImportExport(){
-        await this.roleService.findAll();
-        const isPermistted = await this.roleService.isPermitted('Environment', 'list');
-        isPermistted ? this.dataImportExportService.findAllOptimized().subscribe(dataImportExports => this.dataImportExports = dataImportExports,error=>console.log(error))
-        : this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Problème de permission'});
-    }
 
 	public initDuplicate(res: EnvironmentDto) {
 	}
@@ -93,7 +82,6 @@ export class EnvironmentListAdminComponent extends AbstractListController<Enviro
                 'Dateofbirth': this.datePipe.transform(e.dateofbirth , 'dd/MM/yyyy hh:mm'),
                  'Age': e.age ,
                 'Age category': e.ageCategory?.libelle ,
-                'Data import export': e.dataImportExport?.code ,
             }
         });
 
@@ -106,7 +94,6 @@ export class EnvironmentListAdminComponent extends AbstractListController<Enviro
             'Dateofbirth Max': this.criteria.dateofbirthTo ? this.datePipe.transform(this.criteria.dateofbirthTo , this.dateFormat) : environment.emptyForExport ,
             'Age': this.criteria.age ? this.criteria.age : environment.emptyForExport ,
         //'Age category': this.criteria.ageCategory?.libelle ? this.criteria.ageCategory?.libelle : environment.emptyForExport ,
-        //'Data import export': this.criteria.dataImportExport?.code ? this.criteria.dataImportExport?.code : environment.emptyForExport ,
         }];
       }
 }

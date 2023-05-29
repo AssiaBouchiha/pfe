@@ -46,11 +46,6 @@
                                         [showClear]="true"  placeholder="{{'Reason' | translate}}" optionLabel="libelle">
                             </p-dropdown>
                         </span>
-                        <span class=" p-float-label mr-3 align-search-items mt-4">
-                            <p-dropdown [options]="dataImportExports" [(ngModel)]="criteria.dataImportExport" id="5" [filter]="true"
-                                        [showClear]="true"  placeholder="{{'Data import export' | translate}}" optionLabel="code">
-                            </p-dropdown>
-                        </span>
                 </div>
 
                 <div class="align-search-button">
@@ -60,7 +55,7 @@
 
 
             <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['code', 'date', 'type', 'reasonlibelle', 'dataImportExportcode']" [(selection)]="selections"
+                    [globalFilterFields]="['code', 'date', 'type', 'reasonlibelle']" [(selection)]="selections"
                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
                     currentPageReportTemplate="{{'Les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
                     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
@@ -112,14 +107,6 @@
                             </div>
                         </th>
                                 
-                                
-                        <th pSortableColumn="dataImportExport">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'Data import export' | translate}}</span>
-                                <p-sortIcon field="dataImportExport"></p-sortIcon>
-                            </div>
-                        </th>
-                                
                         <th>Actions</th>
                     </tr>
                 </ng-template>
@@ -139,9 +126,6 @@
                             
                             
                         <td>{{element.reason?.libelle}}</td>
-                            
-                            
-                        <td>{{element.dataImportExport?.code}}</td>
                             
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" (click)="edit(element)"></button>

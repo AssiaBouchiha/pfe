@@ -13,7 +13,6 @@ import {PatientDto} from '../model/Patient.model';
 import {PatientCriteria} from '../criteria/PatientCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {AgeCategoryDto} from '../model/AgeCategory.model';
 import {GenderDto} from '../model/Gender.model';
 

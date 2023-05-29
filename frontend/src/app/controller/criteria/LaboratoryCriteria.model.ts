@@ -1,7 +1,6 @@
-import {DataImportExportCriteria} from './DataImportExportCriteria.model';
 import {DataAnalysisCriteria} from './DataAnalysisCriteria.model';
 import {ReportCriteria} from './ReportCriteria.model';
-import {AntibioticCriteria} from './AntibioticCriteria.model';
+import {LaboratoryAntibioticCriteria} from './LaboratoryAntibioticCriteria.model';
 import {AlertCriteria} from './AlertCriteria.model';
 import {LocationCriteria} from './LocationCriteria.model';
 import {DataArchiveCriteria} from './DataArchiveCriteria.model';
@@ -21,15 +20,13 @@ export class LaboratoryCriteria  extends   BaseCriteria  {
     public cityLike: string;
   public location: LocationCriteria ;
   public locations: Array<LocationCriteria> ;
-  public dataImportExport: DataImportExportCriteria ;
-  public dataImportExports: Array<DataImportExportCriteria> ;
-  public dataanalysis: DataAnalysisCriteria ;
-  public dataanalysiss: Array<DataAnalysisCriteria> ;
-  public dataarchive: DataArchiveCriteria ;
-  public dataarchives: Array<DataArchiveCriteria> ;
+  public dataAnalysis: DataAnalysisCriteria ;
+  public dataAnalysiss: Array<DataAnalysisCriteria> ;
+  public dataArchive: DataArchiveCriteria ;
+  public dataArchives: Array<DataArchiveCriteria> ;
   public report: ReportCriteria ;
   public reports: Array<ReportCriteria> ;
-      public antibiotic: Array<AntibioticCriteria>;
+      public laboratoryAntibiotics: Array<LaboratoryAntibioticCriteria>;
       public alerts: Array<AlertCriteria>;
       public notifications: Array<NotificationCriteria>;
 

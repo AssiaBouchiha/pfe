@@ -12,8 +12,6 @@ import {BrandDto} from 'src/app/controller/model/Brand.model';
 import {BrandService} from 'src/app/controller/service/Brand.service';
 import {MarketCategoryDto} from 'src/app/controller/model/MarketCategory.model';
 import {MarketCategoryService} from 'src/app/controller/service/MarketCategory.service';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
 import {AnimalSpecieDto} from 'src/app/controller/model/AnimalSpecie.model';
 import {AnimalSpecieService} from 'src/app/controller/service/AnimalSpecie.service';
 
@@ -32,11 +30,10 @@ export class FoodEditAdminComponent extends AbstractEditController<FoodDto, Food
     private _validMarketCategoryLibelle = true;
     private _validBrandCode = true;
     private _validBrandLibelle = true;
-    private _validDataImportExportCode = true;
 
 
 
-    constructor( private foodService: FoodService , private brandService: BrandService, private marketCategoryService: MarketCategoryService, private dataImportExportService: DataImportExportService, private animalSpecieService: AnimalSpecieService) {
+    constructor( private foodService: FoodService , private brandService: BrandService, private marketCategoryService: MarketCategoryService, private animalSpecieService: AnimalSpecieService) {
         super(foodService);
     }
 
@@ -47,8 +44,6 @@ export class FoodEditAdminComponent extends AbstractEditController<FoodDto, Food
     this.marketCategoryService.findAll().subscribe((data) => this.marketCategorys = data);
     this.brand = new BrandDto();
     this.brandService.findAll().subscribe((data) => this.brands = data);
-    this.dataImportExport = new DataImportExportDto();
-    this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
 }
 
 
@@ -82,24 +77,6 @@ export class FoodEditAdminComponent extends AbstractEditController<FoodDto, Food
         }
     }
 
-   get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-   }
-  set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-   }
-   get dataImportExports(): Array<DataImportExportDto> {
-        return this.dataImportExportService.items;
-   }
-   set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-   }
-   get createDataImportExportDialog(): boolean {
-       return this.dataImportExportService.createDialog;
-   }
-  set createDataImportExportDialog(value: boolean) {
-       this.dataImportExportService.createDialog= value;
-   }
    get brand(): BrandDto {
        return this.brandService.item;
    }
@@ -198,11 +175,5 @@ export class FoodEditAdminComponent extends AbstractEditController<FoodDto, Food
     }
     set validBrandLibelle(value: boolean) {
         this._validBrandLibelle = value;
-    }
-    get validDataImportExportCode(): boolean {
-        return this._validDataImportExportCode;
-    }
-    set validDataImportExportCode(value: boolean) {
-        this._validDataImportExportCode = value;
     }
 }

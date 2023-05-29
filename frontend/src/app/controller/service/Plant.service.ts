@@ -13,7 +13,6 @@ import {PlantDto} from '../model/Plant.model';
 import {PlantCriteria} from '../criteria/PlantCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 
-import {DataImportExportDto} from '../model/DataImportExport.model';
 import {AgeCategoryDto} from '../model/AgeCategory.model';
 import {GenderDto} from '../model/Gender.model';
 

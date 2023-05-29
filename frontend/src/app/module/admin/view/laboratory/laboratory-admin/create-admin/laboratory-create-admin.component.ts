@@ -5,24 +5,20 @@ import { AbstractCreateController } from 'src/app/zynerator/controller/AbstractC
 import {LaboratoryService} from 'src/app/controller/service/Laboratory.service';
 import {LaboratoryDto} from 'src/app/controller/model/Laboratory.model';
 import {LaboratoryCriteria} from 'src/app/controller/criteria/LaboratoryCriteria.model';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
+import {LocationDto} from 'src/app/controller/model/Location.model';
+import {LocationService} from 'src/app/controller/service/Location.service';
+import {NotificationDto} from 'src/app/controller/model/Notification.model';
+import {NotificationService} from 'src/app/controller/service/Notification.service';
+import {AlertDto} from 'src/app/controller/model/Alert.model';
+import {AlertService} from 'src/app/controller/service/Alert.service';
+import {DataArchiveDto} from 'src/app/controller/model/DataArchive.model';
+import {DataArchiveService} from 'src/app/controller/service/DataArchive.service';
 import {LaboratoryAntibioticDto} from 'src/app/controller/model/LaboratoryAntibiotic.model';
 import {LaboratoryAntibioticService} from 'src/app/controller/service/LaboratoryAntibiotic.service';
 import {DataAnalysisDto} from 'src/app/controller/model/DataAnalysis.model';
 import {DataAnalysisService} from 'src/app/controller/service/DataAnalysis.service';
-import {MicrobiologyDto} from 'src/app/controller/model/Microbiology.model';
-import {MicrobiologyService} from 'src/app/controller/service/Microbiology.service';
 import {ReportDto} from 'src/app/controller/model/Report.model';
 import {ReportService} from 'src/app/controller/service/Report.service';
-import {AlertDto} from 'src/app/controller/model/Alert.model';
-import {AlertService} from 'src/app/controller/service/Alert.service';
-import {NotificationDto} from 'src/app/controller/model/Notification.model';
-import {NotificationService} from 'src/app/controller/service/Notification.service';
-import {LocationDto} from 'src/app/controller/model/Location.model';
-import {LocationService} from 'src/app/controller/service/Location.service';
-import {DataArchiveDto} from 'src/app/controller/model/DataArchive.model';
-import {DataArchiveService} from 'src/app/controller/service/DataArchive.service';
 import {AntibioticDto} from 'src/app/controller/model/Antibiotic.model';
 import {AntibioticService} from 'src/app/controller/service/Antibiotic.service';
 @Component({
@@ -31,57 +27,49 @@ import {AntibioticService} from 'src/app/controller/service/Antibiotic.service';
 })
 export class LaboratoryCreateAdminComponent extends AbstractCreateController<LaboratoryDto, LaboratoryCriteria, LaboratoryService>  implements OnInit {
 
-    private _antibioticElement = new AntibioticDto();
+    private _laboratoryAntibioticsElement = new LaboratoryAntibioticDto();
     private _alertsElement = new AlertDto();
     private _notificationsElement = new NotificationDto();
 
 
    private _validLaboratoryCode = true;
-    private _validAntibioticCode = true;
     private _validLocationCode = true;
-    private _validDataImportExportCode = true;
     private _validAlertsCode = true;
     private _validNotificationsCode = true;
-    private _validDataanalysisCode = true;
-    private _validDataarchiveCode = true;
+    private _validDataAnalysisCode = true;
+    private _validDataArchiveCode = true;
     private _validReportCode = true;
     private _laboratoryAntibiotics: Array<LaboratoryAntibioticDto> = [];
 
-    constructor( private laboratoryService: LaboratoryService , private microbiologyService: MicrobiologyService, private reportService: ReportService, private alertService: AlertService, private laboratoryService: LaboratoryService, private dataImportExportService: DataImportExportService, private notificationService: NotificationService, private locationService: LocationService, private dataArchiveService: DataArchiveService, private dataAnalysisService: DataAnalysisService, private antibioticService: AntibioticService) {
+    constructor( private laboratoryService: LaboratoryService , private alertService: AlertService, private dataArchiveService: DataArchiveService, private laboratoryAntibioticService: LaboratoryAntibioticService, private locationService: LocationService, private dataAnalysisService: DataAnalysisService, private notificationService: NotificationService, private reportService: ReportService, private antibioticService: AntibioticService) {
         super(laboratoryService);
     }
 
     ngOnInit(): void {
-        this.antibioticElement.microbiology = new MicrobiologyDto();
-        this.microbiologyService.findAll().subscribe((data) => this.microbiologys = data);
-         this.laboratoryService.findAll().subscribe(data => this.prepareLaboratoryAntibiotics(data));
+        this.antibioticService.findAll().subscribe(data => this.prepareLaboratoryAntibiotics(data));
+        this.laboratoryAntibioticsElement.antibiotic = new AntibioticDto();
+        this.antibioticService.findAll().subscribe((data) => this.antibiotics = data);
     this.location = new LocationDto();
     this.locationService.findAll().subscribe((data) => this.locations = data);
-    this.dataImportExport = new DataImportExportDto();
-    this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
-    this.dataanalysis = new DataanalysisDto();
-    this.dataanalysisService.findAll().subscribe((data) => this.dataanalysiss = data);
-    this.dataarchive = new DataarchiveDto();
-    this.dataarchiveService.findAll().subscribe((data) => this.dataarchives = data);
+    this.dataAnalysis = new DataAnalysisDto();
+    this.dataAnalysisService.findAll().subscribe((data) => this.dataAnalysiss = data);
+    this.dataArchive = new DataArchiveDto();
+    this.dataArchiveService.findAll().subscribe((data) => this.dataArchives = data);
     this.report = new ReportDto();
     this.reportService.findAll().subscribe((data) => this.reports = data);
 }
 
 
-   prepareLaboratoryAntibiotics(laboratorys: Array<LaboratoryDto>): void{
-        if( laboratorys != null){
-            laboratorys.forEach(e => {
-            const laboratoryAntibiotic = new LaboratoryAntibioticDto();
-            laboratoryAntibiotic.laboratory = e;
-            this.laboratoryAntibiotics.push(laboratoryAntibiotic);
+     prepareLaboratoryAntibiotics(antibiotics: Array<AntibioticDto>): void{
+        if( antibiotics != null){
+                antibiotics.forEach(e => {
+                const laboratoryAntibiotic = new LaboratoryAntibioticDto();
+                laboratoryAntibiotic.antibiotic = e;
+                this.laboratoryAntibiotics.push(laboratoryAntibiotic);
             });
         }
-   }
-
-    validateAntibiotic(){
-        this.errorMessages = new Array();
-        this.validateAntibioticCode();
     }
+
     validateAlerts(){
         this.errorMessages = new Array();
         this.validateAlertsCode();
@@ -94,34 +82,10 @@ export class LaboratoryCreateAdminComponent extends AbstractCreateController<Lab
 
     public setValidation(value: boolean){
         this.validLaboratoryCode = value;
-        this.validAntibioticCode = value;
         this.validAlertsCode = value;
         this.validNotificationsCode = value;
     }
 
-    public addAntibiotic() {
-        if( this.item.antibiotic == null )
-            this.item.antibiotic = new Array<AntibioticDto>();
-       this.validateAntibiotic();
-       if (this.errorMessages.length === 0) {
-              this.item.antibiotic.push({... this.antibioticElement});
-              this.antibioticElement = new AntibioticDto();
-       }else{
-            this.messageService.add({severity: 'error',summary: 'Erreurs',detail: 'Merci de corrigé les erreurs suivant : ' + this.errorMessages});
-       }
-    }
-
-
-    public deleteAntibiotic(p: AntibioticDto) {
-        this.item.antibiotic.forEach((element, index) => {
-            if (element === p) { this.item.antibiotic.splice(index, 1); }
-        });
-    }
-
-    public editAntibiotic(p: AntibioticDto) {
-        this.antibioticElement = {... p};
-        this.activeTab = 0;
-    }
     public addAlerts() {
         if( this.item.alerts == null )
             this.item.alerts = new Array<AlertDto>();
@@ -184,14 +148,6 @@ export class LaboratoryCreateAdminComponent extends AbstractCreateController<Lab
         }
     }
 
-    public validateAntibioticCode(){
-        if (this.antibioticElement.code == null) {
-            this.errorMessages.push('Code de la antibiotic est  invalide');
-            this.validAntibioticCode = false;
-        } else {
-            this.validAntibioticCode = true;
-        }
-    }
     public validateAlertsCode(){
         if (this.alertsElement.code == null) {
             this.errorMessages.push('Code de la alert est  invalide');
@@ -210,76 +166,58 @@ export class LaboratoryCreateAdminComponent extends AbstractCreateController<Lab
     }
 
 
-    get dataanalysis(): DataAnalysisDto {
+    get antibiotic(): AntibioticDto {
+        return this.antibioticService.item;
+    }
+    set antibiotic(value: AntibioticDto) {
+        this.antibioticService.item = value;
+    }
+    get antibiotics(): Array<AntibioticDto> {
+        return this.antibioticService.items;
+    }
+    set antibiotics(value: Array<AntibioticDto>) {
+        this.antibioticService.items = value;
+    }
+    get createAntibioticDialog(): boolean {
+       return this.antibioticService.createDialog;
+    }
+    set createAntibioticDialog(value: boolean) {
+        this.antibioticService.createDialog= value;
+    }
+    get dataAnalysis(): DataAnalysisDto {
         return this.dataAnalysisService.item;
     }
-    set dataanalysis(value: DataAnalysisDto) {
+    set dataAnalysis(value: DataAnalysisDto) {
         this.dataAnalysisService.item = value;
     }
-    get dataanalysiss(): Array<DataAnalysisDto> {
+    get dataAnalysiss(): Array<DataAnalysisDto> {
         return this.dataAnalysisService.items;
     }
-    set dataanalysiss(value: Array<DataAnalysisDto>) {
+    set dataAnalysiss(value: Array<DataAnalysisDto>) {
         this.dataAnalysisService.items = value;
     }
-    get createDataanalysisDialog(): boolean {
+    get createDataAnalysisDialog(): boolean {
        return this.dataAnalysisService.createDialog;
     }
-    set createDataanalysisDialog(value: boolean) {
+    set createDataAnalysisDialog(value: boolean) {
         this.dataAnalysisService.createDialog= value;
     }
-    get dataImportExport(): DataImportExportDto {
-        return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports(): Array<DataImportExportDto> {
-        return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
-    }
-    get createDataImportExportDialog(): boolean {
-       return this.dataImportExportService.createDialog;
-    }
-    set createDataImportExportDialog(value: boolean) {
-        this.dataImportExportService.createDialog= value;
-    }
-    get microbiology(): MicrobiologyDto {
-        return this.microbiologyService.item;
-    }
-    set microbiology(value: MicrobiologyDto) {
-        this.microbiologyService.item = value;
-    }
-    get microbiologys(): Array<MicrobiologyDto> {
-        return this.microbiologyService.items;
-    }
-    set microbiologys(value: Array<MicrobiologyDto>) {
-        this.microbiologyService.items = value;
-    }
-    get createMicrobiologyDialog(): boolean {
-       return this.microbiologyService.createDialog;
-    }
-    set createMicrobiologyDialog(value: boolean) {
-        this.microbiologyService.createDialog= value;
-    }
-    get dataarchive(): DataArchiveDto {
+    get dataArchive(): DataArchiveDto {
         return this.dataArchiveService.item;
     }
-    set dataarchive(value: DataArchiveDto) {
+    set dataArchive(value: DataArchiveDto) {
         this.dataArchiveService.item = value;
     }
-    get dataarchives(): Array<DataArchiveDto> {
+    get dataArchives(): Array<DataArchiveDto> {
         return this.dataArchiveService.items;
     }
-    set dataarchives(value: Array<DataArchiveDto>) {
+    set dataArchives(value: Array<DataArchiveDto>) {
         this.dataArchiveService.items = value;
     }
-    get createDataarchiveDialog(): boolean {
+    get createDataArchiveDialog(): boolean {
        return this.dataArchiveService.createDialog;
     }
-    set createDataarchiveDialog(value: boolean) {
+    set createDataArchiveDialog(value: boolean) {
         this.dataArchiveService.createDialog= value;
     }
     get location(): LocationDto {
@@ -319,7 +257,6 @@ export class LaboratoryCreateAdminComponent extends AbstractCreateController<Lab
         this.reportService.createDialog= value;
     }
 
-
     get laboratoryAntibiotics(): Array<LaboratoryAntibioticDto> {
         if( this._laboratoryAntibiotics == null )
             this._laboratoryAntibiotics = new Array();
@@ -330,6 +267,7 @@ export class LaboratoryCreateAdminComponent extends AbstractCreateController<Lab
         this._laboratoryAntibiotics = value;
     }
 
+
     get validLaboratoryCode(): boolean {
         return this._validLaboratoryCode;
     }
@@ -338,23 +276,11 @@ export class LaboratoryCreateAdminComponent extends AbstractCreateController<Lab
          this._validLaboratoryCode = value;
     }
 
-    get validAntibioticCode(): boolean {
-        return this._validAntibioticCode;
-    }
-    set validAntibioticCode(value: boolean) {
-        this._validAntibioticCode = value;
-    }
     get validLocationCode(): boolean {
         return this._validLocationCode;
     }
     set validLocationCode(value: boolean) {
         this._validLocationCode = value;
-    }
-    get validDataImportExportCode(): boolean {
-        return this._validDataImportExportCode;
-    }
-    set validDataImportExportCode(value: boolean) {
-        this._validDataImportExportCode = value;
     }
     get validAlertsCode(): boolean {
         return this._validAlertsCode;
@@ -368,17 +294,17 @@ export class LaboratoryCreateAdminComponent extends AbstractCreateController<Lab
     set validNotificationsCode(value: boolean) {
         this._validNotificationsCode = value;
     }
-    get validDataanalysisCode(): boolean {
-        return this._validDataanalysisCode;
+    get validDataAnalysisCode(): boolean {
+        return this._validDataAnalysisCode;
     }
-    set validDataanalysisCode(value: boolean) {
-        this._validDataanalysisCode = value;
+    set validDataAnalysisCode(value: boolean) {
+        this._validDataAnalysisCode = value;
     }
-    get validDataarchiveCode(): boolean {
-        return this._validDataarchiveCode;
+    get validDataArchiveCode(): boolean {
+        return this._validDataArchiveCode;
     }
-    set validDataarchiveCode(value: boolean) {
-        this._validDataarchiveCode = value;
+    set validDataArchiveCode(value: boolean) {
+        this._validDataArchiveCode = value;
     }
     get validReportCode(): boolean {
         return this._validReportCode;
@@ -387,14 +313,14 @@ export class LaboratoryCreateAdminComponent extends AbstractCreateController<Lab
         this._validReportCode = value;
     }
 
-    get antibioticElement(): AntibioticDto {
-        if( this._antibioticElement == null )
-            this._antibioticElement = new AntibioticDto();
-        return this._antibioticElement;
+    get laboratoryAntibioticsElement(): LaboratoryAntibioticDto {
+        if( this._laboratoryAntibioticsElement == null )
+            this._laboratoryAntibioticsElement = new LaboratoryAntibioticDto();
+        return this._laboratoryAntibioticsElement;
     }
 
-    set antibioticElement(value: AntibioticDto) {
-        this._antibioticElement = value;
+    set laboratoryAntibioticsElement(value: LaboratoryAntibioticDto) {
+        this._laboratoryAntibioticsElement = value;
     }
     get alertsElement(): AlertDto {
         if( this._alertsElement == null )

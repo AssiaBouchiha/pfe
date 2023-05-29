@@ -37,6 +37,7 @@ export class AbstractListController<DTO extends BaseDto, CRITERIA extends BaseCr
     protected stringUtilService: StringUtilService;
     protected authService: AuthService;
     protected exportService: ExportService;
+    protected excelFile: File | undefined;
 
 
     constructor(service: SERVICE) {
@@ -56,6 +57,20 @@ export class AbstractListController<DTO extends BaseDto, CRITERIA extends BaseCr
         this.initCol();
     }
 
+    public onExcelFileSelected(event: any): void {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.excelFile = input.files[0];
+        }
+    }
+    public importExcel(): void {
+        if (this.excelFile) {
+            this.service.importExcel(this.excelFile).subscribe(
+                response => {console.log('File uploaded successfully!', response);},
+                error => {console.error('Error uploading file:', error);}
+            );
+        }
+    }
     public findPaginatedByCriteria() {
         this.service.findPaginatedByCriteria(this.criteria).subscribe(paginatedItems => {
             this.items = paginatedItems.list;

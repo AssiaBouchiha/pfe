@@ -8,12 +8,10 @@ import {PatientService} from 'src/app/controller/service/Patient.service';
 import {PatientDto} from 'src/app/controller/model/Patient.model';
 import {PatientCriteria} from 'src/app/controller/criteria/PatientCriteria.model';
 
-import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
-import {AgeCategoryService} from 'src/app/controller/service/AgeCategory.service';
-import {DataImportExportDto} from 'src/app/controller/model/DataImportExport.model';
-import {DataImportExportService} from 'src/app/controller/service/DataImportExport.service';
 import {GenderDto} from 'src/app/controller/model/Gender.model';
 import {GenderService} from 'src/app/controller/service/Gender.service';
+import {AgeCategoryDto} from 'src/app/controller/model/AgeCategory.model';
+import {AgeCategoryService} from 'src/app/controller/service/AgeCategory.service';
 @Component({
   selector: 'app-patient-view-admin',
   templateUrl: './patient-view-admin.component.html'
@@ -21,7 +19,7 @@ import {GenderService} from 'src/app/controller/service/Gender.service';
 export class PatientViewAdminComponent extends AbstractViewController<PatientDto, PatientCriteria, PatientService> implements OnInit {
 
 
-    constructor(private patientService: PatientService, private ageCategoryService: AgeCategoryService, private dataImportExportService: DataImportExportService, private genderService: GenderService){
+    constructor(private patientService: PatientService, private genderService: GenderService, private ageCategoryService: AgeCategoryService){
         super(patientService);
     }
 
@@ -30,8 +28,6 @@ export class PatientViewAdminComponent extends AbstractViewController<PatientDto
         this.genderService.findAll().subscribe((data) => this.genders = data);
         this.ageCategory = new AgeCategoryDto();
         this.ageCategoryService.findAll().subscribe((data) => this.ageCategorys = data);
-        this.dataImportExport = new DataImportExportDto();
-        this.dataImportExportService.findAll().subscribe((data) => this.dataImportExports = data);
     }
 
 
@@ -46,18 +42,6 @@ export class PatientViewAdminComponent extends AbstractViewController<PatientDto
     }
     set genders(value: Array<GenderDto>) {
         this.genderService.items = value;
-    }
-    get dataImportExport(): DataImportExportDto {
-       return this.dataImportExportService.item;
-    }
-    set dataImportExport(value: DataImportExportDto) {
-        this.dataImportExportService.item = value;
-    }
-    get dataImportExports():Array<DataImportExportDto> {
-       return this.dataImportExportService.items;
-    }
-    set dataImportExports(value: Array<DataImportExportDto>) {
-        this.dataImportExportService.items = value;
     }
     get ageCategory(): AgeCategoryDto {
        return this.ageCategoryService.item;
