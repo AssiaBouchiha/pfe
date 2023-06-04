@@ -17,11 +17,13 @@ public class FournisseurWs {
 
     @PostMapping("/")
     public int save(@RequestBody Fournisseur fournisseur) {
+
         return fournisseurService.save(fournisseur);
     }
 
     @PutMapping("/")
     public int update(@RequestBody Fournisseur fournisseur) {
+
         return fournisseurService.update(fournisseur);
     }
 

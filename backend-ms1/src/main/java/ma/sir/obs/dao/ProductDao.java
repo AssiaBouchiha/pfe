@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductDao extends JpaRepository {
+public interface ProductDao extends JpaRepository<Product ,Long> {
 
     Product findBypartNumber(String partNumber);
 }
