@@ -2,7 +2,7 @@ package ma.sir.obs.ws;
 
 
 import ma.sir.obs.bean.Supplier;
-import ma.sir.obs.service.facade.FournisseurService;
+import ma.sir.obs.service.facade.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,33 +11,33 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/fournisseur")
-public class FournisseurWs {
+public class SupplierWs {
     @Autowired
-    private FournisseurService fournisseurService;
+    private SupplierService supplierService;
 
     @PostMapping("/")
     public int save(@RequestBody Supplier supplier) {
 
-        return fournisseurService.save(supplier);
+        return supplierService.save(supplier);
     }
 
     @PutMapping("/")
     public int update(@RequestBody Supplier supplier) {
 
-        return fournisseurService.update(supplier);
+        return supplierService.update(supplier);
     }
 
     @GetMapping("ref/{reference}")
     public Supplier findByReference(@PathVariable String reference) {
-        return fournisseurService.findByReference(reference);
+        return supplierService.findByReference(reference);
     }
    @DeleteMapping("ref/{reference}")
     public int deleteByReference(@PathVariable String reference) {
-        return fournisseurService.deleteByReference(reference);
+        return supplierService.deleteByReference(reference);
     }
 
     @GetMapping("/")
     public List<Supplier> findAll() {
-        return fournisseurService.findAll();
+        return supplierService.findAll();
     }
 }

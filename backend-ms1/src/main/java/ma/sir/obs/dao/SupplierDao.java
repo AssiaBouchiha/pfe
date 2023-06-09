@@ -9,8 +9,10 @@ import java.util.List;
 
 @Repository
 public interface SupplierDao extends JpaRepository<Supplier,Long> {
-    Supplier findByRef (String ref);
-    Supplier deleteByRef(String ref);
-    List<Supplier> findByRefLikeAndTotalGreaterThan(String ref, double total);
+    Supplier findByReference (String reference);
+    int deleteByReference(String reference);
+    List<Supplier> findByReferenceLikeAndTotalGreaterThan(String ref, double total);
+
+
 
 }

@@ -4,7 +4,7 @@ import ma.sir.obs.bean.Achat;
 import ma.sir.obs.bean.Supplier;
 import ma.sir.obs.dao.AchatDao;
 import ma.sir.obs.service.facade.AchatService;
-import ma.sir.obs.service.facade.FournisseurService;
+import ma.sir.obs.service.facade.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,7 @@ public class AchatServiceImpl implements AchatService {
     @Autowired
     private AchatDao achatDao;
     @Autowired
-    private FournisseurService fournisseurService;
+    private SupplierService fournisseurService;
 
     @Override
     public int save(Achat achat){
@@ -67,7 +67,7 @@ public class AchatServiceImpl implements AchatService {
 
     @Override
     public List<Achat> findByMontantAchatGreaterThan(double montantAchat) {
-        return  achatDao.findByMontantAchatGreaterThan(montantAchat);
+        return  achatDao.findByMontantAchatLessThan(montantAchat);
     }
 
     @Override

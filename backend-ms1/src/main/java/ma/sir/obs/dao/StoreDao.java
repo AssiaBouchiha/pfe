@@ -13,4 +13,5 @@ public interface StoreDao extends JpaRepository<Store,Long> {
     List<Store> findByRefLikeAndTotalGreaterThan(String ref, double total);
 
 
+
 }

@@ -5,7 +5,7 @@ import ma.sir.obs.bean.Supplier;
 
 import java.util.List;
 
-public interface FournisseurService {
+public interface SupplierService {
 
     int save(Supplier supplier);
 

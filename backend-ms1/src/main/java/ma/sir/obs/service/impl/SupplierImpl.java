@@ -1,8 +1,9 @@
 package ma.sir.obs.service.impl;
 
 import ma.sir.obs.bean.Supplier;
+import ma.sir.obs.dao.SupplierDao;
 import ma.sir.obs.service.facade.AchatService;
-import ma.sir.obs.service.facade.FournisseurService;
+import ma.sir.obs.service.facade.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class FournisseurImpl implements FournisseurService {
+public class SupplierImpl implements SupplierService {
 
     @Autowired
-    private FournisseurDao fournisseurDao;
+    private SupplierDao supplierDao;
 
     @Autowired
     private AchatService achatService;
@@ -23,7 +24,7 @@ public class FournisseurImpl implements FournisseurService {
         if (findByReference(supplier.getReference()) != null) {
             return -1;
         }
-        fournisseurDao.save(supplier);
+        supplierDao.save(supplier);
         return 1;
     }
 
@@ -33,7 +34,7 @@ public class FournisseurImpl implements FournisseurService {
         if (findByReference(supplier.getReference()) == null) {
             return -1;
         }
-        fournisseurDao.save(supplier);
+        supplierDao.save(supplier);
         return 1;
 
     }
@@ -41,7 +42,7 @@ public class FournisseurImpl implements FournisseurService {
     @Override
     public Supplier findByReference(String reference) {
 
-        return fournisseurDao.findByReference(reference);
+        return supplierDao.findByReference(reference);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class FournisseurImpl implements FournisseurService {
         if (findByReference(reference) == null) {
             return -1;
         }
-        int res1 = fournisseurDao.deleteByReference(reference);
+        int res1 = supplierDao.deleteByReference(reference);
         int res2 = achatService.deleteByFournisseurReference(reference);
         return res1 + res2;
 
@@ -59,6 +60,6 @@ public class FournisseurImpl implements FournisseurService {
 
     @Override
     public List<Supplier> findAll() {
-        return fournisseurDao.findAll();
+        return supplierDao.findAll();
     }
 }
