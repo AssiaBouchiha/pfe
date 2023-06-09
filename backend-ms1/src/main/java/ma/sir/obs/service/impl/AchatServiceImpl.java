@@ -1,7 +1,7 @@
 package ma.sir.obs.service.impl;
 
 import ma.sir.obs.bean.Achat;
-import ma.sir.obs.bean.Fournisseur;
+import ma.sir.obs.bean.Supplier;
 import ma.sir.obs.dao.AchatDao;
 import ma.sir.obs.service.facade.AchatService;
 import ma.sir.obs.service.facade.FournisseurService;
@@ -47,8 +47,8 @@ public class AchatServiceImpl implements AchatService {
     @Override
     @Transactional
     public int deleteByFournisseurReference(String reference) {
-        Fournisseur fournisseur = fournisseurService.findByReference(reference);
-        List<Achat> achats = achatDao.findByFournisseur(fournisseur);
+        Supplier supplier = fournisseurService.findByReference(reference);
+        List<Achat> achats = achatDao.findByFournisseur(supplier);
         if (achats.isEmpty()){
             return  -1;
         }else {

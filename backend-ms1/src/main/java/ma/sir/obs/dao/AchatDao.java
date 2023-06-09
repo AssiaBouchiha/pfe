@@ -1,7 +1,7 @@
 package ma.sir.obs.dao;
 
 import ma.sir.obs.bean.Achat;
-import ma.sir.obs.bean.Fournisseur;
+import ma.sir.obs.bean.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,9 +15,7 @@ public interface AchatDao extends JpaRepository <Achat, Long> {
     int deleteByFournisseurReference(String reference);
     List<Achat> findByMontantAchatLessThan(double montantAchat);
 
-    List<Achat> findByMontantAchatGreaterThan(double montantAchat);
-
-    List<Achat> findByFournisseur(Fournisseur fournisseur);
+    List<Achat> findByFournisseur(Supplier supplier);
 
 
 }

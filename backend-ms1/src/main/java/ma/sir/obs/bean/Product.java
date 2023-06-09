@@ -10,10 +10,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String partNumber;
-
+    @ManyToOne
+    private ProductFamily productFamily;
 
 
     public Product() {
+    }
+
+    public ProductFamily getProductFamily() {
+        return productFamily;
+    }
+
+    public void setProductFamily(ProductFamily productFamily) {
+        this.productFamily = productFamily;
     }
 
     public Long getId() {

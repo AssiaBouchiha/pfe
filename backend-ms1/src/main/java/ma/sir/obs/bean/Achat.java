@@ -14,16 +14,16 @@ public class Achat {
     private String dateAchat;
     private String dateLivraison;
     @ManyToOne
-    private Fournisseur fournisseur;
+    private Supplier supplier;
     private double montantAchat;
 
-    public Achat(Long id, String reference, double montantDevis, String dataAchat, String dateLivraison, Fournisseur fournisseur, double montantAchat) {
+    public Achat(Long id, String reference, double montantDevis, String dataAchat, String dateLivraison, Supplier supplier, double montantAchat) {
         this.id = id;
         this.reference = reference;
         this.montantDevis = montantDevis;
         this.dateAchat = dataAchat;
         this.dateLivraison = dateLivraison;
-        this.fournisseur = fournisseur;
+        this.supplier = supplier;
         this.montantAchat = montantAchat;
     }
 
@@ -62,12 +62,12 @@ public class Achat {
         this.dateLivraison = dateLivraison;
     }
 
-    public Fournisseur getFournisseur() {
-        return fournisseur;
+    public Supplier getFournisseur() {
+        return supplier;
     }
 
-    public void setFournisseur(Fournisseur fournisseur) {
-        this.fournisseur = fournisseur;
+    public void setFournisseur(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public double getMontantAchat() {

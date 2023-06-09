@@ -1,7 +1,6 @@
 package ma.sir.obs.service.impl;
 
-import ma.sir.obs.bean.Fournisseur;
-import ma.sir.obs.dao.FournisseurDao;
+import ma.sir.obs.bean.Supplier;
 import ma.sir.obs.service.facade.AchatService;
 import ma.sir.obs.service.facade.FournisseurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +19,27 @@ public class FournisseurImpl implements FournisseurService {
     private AchatService achatService;
 
     @Override
-    public int save(Fournisseur fournisseur) {
-        if (findByReference(fournisseur.getReference()) != null) {
+    public int save(Supplier supplier) {
+        if (findByReference(supplier.getReference()) != null) {
             return -1;
         }
-        fournisseurDao.save(fournisseur);
+        fournisseurDao.save(supplier);
         return 1;
     }
 
     @Override
-    public int update(Fournisseur fournisseur) {
+    public int update(Supplier supplier) {
 
-        if (findByReference(fournisseur.getReference()) == null) {
+        if (findByReference(supplier.getReference()) == null) {
             return -1;
         }
-        fournisseurDao.save(fournisseur);
+        fournisseurDao.save(supplier);
         return 1;
 
     }
 
     @Override
-    public Fournisseur findByReference(String reference) {
+    public Supplier findByReference(String reference) {
 
         return fournisseurDao.findByReference(reference);
     }
@@ -59,7 +58,7 @@ public class FournisseurImpl implements FournisseurService {
 
 
     @Override
-    public List<Fournisseur> findAll() {
+    public List<Supplier> findAll() {
         return fournisseurDao.findAll();
     }
 }

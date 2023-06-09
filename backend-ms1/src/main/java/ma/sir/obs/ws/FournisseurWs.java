@@ -1,7 +1,7 @@
 package ma.sir.obs.ws;
 
 
-import ma.sir.obs.bean.Fournisseur;
+import ma.sir.obs.bean.Supplier;
 import ma.sir.obs.service.facade.FournisseurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,19 +16,19 @@ public class FournisseurWs {
     private FournisseurService fournisseurService;
 
     @PostMapping("/")
-    public int save(@RequestBody Fournisseur fournisseur) {
+    public int save(@RequestBody Supplier supplier) {
 
-        return fournisseurService.save(fournisseur);
+        return fournisseurService.save(supplier);
     }
 
     @PutMapping("/")
-    public int update(@RequestBody Fournisseur fournisseur) {
+    public int update(@RequestBody Supplier supplier) {
 
-        return fournisseurService.update(fournisseur);
+        return fournisseurService.update(supplier);
     }
 
     @GetMapping("ref/{reference}")
-    public Fournisseur findByReference(@PathVariable String reference) {
+    public Supplier findByReference(@PathVariable String reference) {
         return fournisseurService.findByReference(reference);
     }
    @DeleteMapping("ref/{reference}")
@@ -37,7 +37,7 @@ public class FournisseurWs {
     }
 
     @GetMapping("/")
-    public List<Fournisseur> findAll() {
+    public List<Supplier> findAll() {
         return fournisseurService.findAll();
     }
 }

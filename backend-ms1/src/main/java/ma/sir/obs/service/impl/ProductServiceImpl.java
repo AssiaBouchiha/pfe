@@ -1,7 +1,6 @@
 package ma.sir.obs.service.impl;
 
 import ma.sir.obs.bean.Product;
-import ma.sir.obs.dao.ProductDao;
 import ma.sir.obs.service.facade.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

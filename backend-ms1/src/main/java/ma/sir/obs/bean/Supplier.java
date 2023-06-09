@@ -2,10 +2,8 @@ package ma.sir.obs.bean;
 
 import javax.persistence.*;
 
-import java.util.List;
-
 @Entity
-public class Fournisseur {
+public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +15,7 @@ public class Fournisseur {
 
     // constructeurs, getters et setters
 
-    public Fournisseur(Long id, String nom, String prenom, String fournisseurReference, String email) {
+    public Supplier(Long id, String nom, String prenom, String fournisseurReference, String email) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -25,7 +23,7 @@ public class Fournisseur {
         this.email = email;
     }
 
-    public Fournisseur() {
+    public Supplier() {
 
     }
 

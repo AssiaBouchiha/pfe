@@ -1,22 +1,22 @@
 package ma.sir.obs.service.facade;
 
 
-import ma.sir.obs.bean.Fournisseur;
+import ma.sir.obs.bean.Supplier;
 
 import java.util.List;
 
 public interface FournisseurService {
 
-    int save(Fournisseur fournisseur);
+    int save(Supplier supplier);
 
-    int update(Fournisseur fournisseur);
+    int update(Supplier supplier);
 
-    Fournisseur findByReference(String reference);
+    Supplier findByReference(String reference);
 
     int deleteByReference(String reference);
 
 
-    List<Fournisseur> findAll();
+    List<Supplier> findAll();
 
 }
 
