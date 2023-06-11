@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface RecipientDao extends JpaRepository<Recipient,Long> {
-    Recipient findByRef (String ref);
-    Recipient deleteByRef(String ref);
-    List<Recipient> findByRefLikeAndTotalGreaterThan(String ref, double total);
 
 
+    Recipient findByCode(String code);
+
+    int deleteByCode(String code);
 }

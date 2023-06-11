@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderSupplierDao extends JpaRepository<OrderSupplier,Long> {
-    OrderSupplier findByRef (String ref);
-    OrderSupplier deleteByRef(String ref);
-    List<OrderSupplier> findByRefLikeAndTotalGreaterThan(String ref, double total);
+public interface OrderSupplierDao extends JpaRepository<OrderSupplier, Long> {
+
+    OrderSupplier findByReference(String reference);
+    int deleteByReference(String reference);
 }

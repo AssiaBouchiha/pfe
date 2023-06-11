@@ -12,10 +12,6 @@ public interface AchatDao extends JpaRepository <Achat, Long> {
     Achat findByReference(String reference);
     int deleteByReference(String reference);
 
-    int deleteByFournisseurReference(String reference);
     List<Achat> findByMontantAchatLessThan(double montantAchat);
-
-    List<Achat> findByFournisseur(Supplier supplier);
-
 
 }

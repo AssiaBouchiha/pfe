@@ -9,6 +9,8 @@ public class OrderSupplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String reference;
+
     @ManyToOne
     private OrderSupplierType orderSupplierType;
     private LocalDateTime dateOrder;
@@ -27,6 +29,16 @@ public class OrderSupplier {
     private Currency currency;
     @ManyToOne
     private OrderSupplierStatus orderSupplierStatus;
+
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
 
     public Currency getCurrency() {
         return currency;

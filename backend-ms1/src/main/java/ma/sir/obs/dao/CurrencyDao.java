@@ -8,10 +8,7 @@ import java.util.List;
 
 @Repository
 public interface CurrencyDao extends JpaRepository<Currency,Long> {
-    Currency findByLibelle ( String libelle);
-    Currency finByCode (String Code);
-    Currency deleteByLibelle(String libelle);
-    Currency deleteByCode(String Code );
+
 
 
 

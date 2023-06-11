@@ -7,9 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderSupplierDeliveryProductDao extends JpaRepository<OrderSupplierDeliveryProduct,Long> {
-    OrderSupplierDeliveryProduct findByRef(String ref);
-    OrderSupplierDeliveryProduct deleteByRef(String ref);
-    List<OrderSupplierDeliveryProduct> findByRefLikeAndTotalGreaterThan(String ref, double total);
+public interface OrderSupplierDeliveryProductDao extends JpaRepository<OrderSupplierDeliveryProduct, Long> {
+
 
 }

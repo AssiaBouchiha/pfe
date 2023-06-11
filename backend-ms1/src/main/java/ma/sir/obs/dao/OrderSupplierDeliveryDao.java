@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface OrderSupplierDeliveryDao extends JpaRepository<OrderSupplierDelivery,Long> {
-    OrderSupplierDelivery findByRef (String ref);
-    OrderSupplierDelivery deleteByRef(String ref);
-    List<OrderSupplierDelivery> findByRefLikeAndTotalGreaterThan(String ref, double total);
+
 }

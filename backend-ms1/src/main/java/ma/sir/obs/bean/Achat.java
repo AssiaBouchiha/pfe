@@ -62,11 +62,11 @@ public class Achat {
         this.dateLivraison = dateLivraison;
     }
 
-    public Supplier getFournisseur() {
+    public Supplier getSupplier() {
         return supplier;
     }
 
-    public void setFournisseur(Supplier supplier) {
+    public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
 
@@ -87,4 +87,4 @@ public class Achat {
     }
 
 
-    }
+}

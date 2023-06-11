@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/fournisseur")
+    @RequestMapping("/api/supplier")
 public class SupplierWs {
     @Autowired
     private SupplierService supplierService;

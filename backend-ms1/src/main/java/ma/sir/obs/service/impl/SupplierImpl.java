@@ -42,7 +42,7 @@ public class SupplierImpl implements SupplierService {
     @Override
     public Supplier findByReference(String reference) {
 
-        return supplierDao.findByReference(reference);
+        return null;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class SupplierImpl implements SupplierService {
         if (findByReference(reference) == null) {
             return -1;
         }
-        int res1 = supplierDao.deleteByReference(reference);
+        int res1 = 0;//supplierDao.deleteByReference(reference);
         int res2 = achatService.deleteByFournisseurReference(reference);
         return res1 + res2;
 

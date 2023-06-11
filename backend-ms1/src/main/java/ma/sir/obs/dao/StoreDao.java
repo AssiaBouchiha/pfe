@@ -8,9 +8,7 @@ import java.util.List;
 
 @Repository
 public interface StoreDao extends JpaRepository<Store,Long> {
-    Store findByRef (String ref);
-    Store deleteByRef(String ref);
-    List<Store> findByRefLikeAndTotalGreaterThan(String ref, double total);
+
 
 
 

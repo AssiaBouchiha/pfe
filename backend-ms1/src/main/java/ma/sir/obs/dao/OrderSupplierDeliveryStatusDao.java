@@ -9,7 +9,5 @@ import java.util.List;
 
 @Repository
 public interface OrderSupplierDeliveryStatusDao extends JpaRepository<OrderSupplierDeliveryStatus,Long> {
-    OrderSupplierDeliveryStatus findByRef (String ref);
-    OrderSupplierDeliveryStatus deleteByRef(String ref);
-    List<OrderSupplierDeliveryStatus> findByRefLikeAndTotalGreaterThan(String ref, double total);
+
 }

@@ -23,7 +23,7 @@ public class AchatServiceImpl implements AchatService {
     public int save(Achat achat){
         if (findByReference(achat.getReference()) != null) {
             return -1;
-        } else if (achat.getFournisseur() == null) {
+        } else if (achat.getSupplier() == null) {
             return -2;
         }
 
@@ -47,7 +47,7 @@ public class AchatServiceImpl implements AchatService {
     @Override
     @Transactional
     public int deleteByFournisseurReference(String reference) {
-        Supplier supplier = fournisseurService.findByReference(reference);
+      /*  Supplier supplier = fournisseurService.findByReference(reference);
         List<Achat> achats = achatDao.findByFournisseur(supplier);
         if (achats.isEmpty()){
             return  -1;
@@ -57,7 +57,8 @@ public class AchatServiceImpl implements AchatService {
                 deleteByReference(achat.getReference());
             }
             return achats.size();
-        }
+        }*/
+        return 1;
     }
 
     @Override

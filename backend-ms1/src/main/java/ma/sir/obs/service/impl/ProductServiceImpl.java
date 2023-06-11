@@ -1,6 +1,7 @@
 package ma.sir.obs.service.impl;
 
 import ma.sir.obs.bean.Product;
+import ma.sir.obs.dao.ProductDao;
 import ma.sir.obs.service.facade.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findBypartNumber(String partNumber) {
-        return productDao.findBypartNumber(partNumber);
+        return productDao.findByPartNumber(partNumber);
     }
     @Override
     public List findAll() {
